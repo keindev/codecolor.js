@@ -1,0 +1,14 @@
+[ignore]
+<PROJECT_ROOT>/dist/.*
+.*/node_modules/.*
+.*/test/.*
+
+[include]
+
+[libs]
+
+[lints]
+
+[options]
+
+[strict]

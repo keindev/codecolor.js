@@ -1,0 +1,18 @@
+` class="${cls + 123}"`
+
+// @flow
+
+import Parser from './parser';
+
+1111
+
+return process(block, true, 0x0F) + ` class="${cls}"`;
+
+"/**/"
+
+// test comment
+
+/**
+* multiline "string" 1
+* comment
+*/

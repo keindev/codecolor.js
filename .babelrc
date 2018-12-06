@@ -1,0 +1,28 @@
+{
+    "env": {
+        "transpile": {
+            "presets": [
+                "@babel/preset-flow"
+            ]
+        },
+        "transpile-legacy": {
+            "presets": [
+                ["@babel/preset-env", {
+                    "loose": true,
+                    "useBuiltIns": "entry"
+                }],
+                "@babel/preset-flow"
+            ],
+            "comments": false
+        },
+        "minify": {
+            "presets": [
+                "minify"
+            ],
+            "comments": false
+        }
+    },
+    "plugins": [
+        ["transform-class-properties", { "spec": true }]
+    ]
+}

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="stylesheet" href="example/atom.css">
+        <script src="example/highlight.js"></script>
+
+        <link rel="stylesheet" href="../dist/themes/atom.css">
+        <script src="../dist/codecolor.js"></script>
+        <style>
+            .layer {
+                margin: 20px auto;
+                width: 1320px;
+            }
+
+            .container {
+                width: 600px;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+                padding: 15px;
+                margin: 15px;
+                float: left;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="source1" style="display:none;"></div>
+        <div id="source2" style="display:none;"></div>
+
+        <div class="layer">
+            <div class="container">
+                <pre><code id="code1" class="javascript"></code></pre>
+            </div>
+
+            <div class="container">
+                <div id="code2"></div>
+            </div>
+        </div>
+
+        <script language="javascript">
+            let getJSON = function(url, callback) {
+                let xhr = new XMLHttpRequest();
+                xhr.open('GET', url, true);
+                xhr.responseType = 'json';
+                xhr.onload = function() {
+                    callback(xhr.response);
+                };
+                xhr.send();
+            };
+
+    		window.onload = function(e) {
+                let source = document.getElementById('source1');
+                // let source = document.getElementById('source1');
+                let code1 = document.getElementById('code1');
+                let code2 = document.getElementById('code2');
+
+                fetch('example/source.txt')
+                    .then(response => response.text())
+                    .then(text => {
+                        source.textContent = text;
+
+                        fetch('../dist/languages/javascript.json')
+                            .then(response => response.json())
+                            .then(jsonResponse => {
+                                try {
+                                    let timeR1 = timeR2 = 0;
+                                    const N = 1000;
+
+                                    let time1 = performance.now();
+                                    for (let i = 0; i < N; i++) {
+                                        code1.innerHTML = source.textContent;
+                                        hljs.highlightBlock(code1);
+                                    }
+                                    timeR1 = performance.now() - time1;
+                                    console.log('Время выполнения highlight.js: ', timeR1 / N, ` (100%)`);
+
+
+                                    let time2 = performance.now();
+                                    for (let j = 0; j < N; j++) {
+                                        code2.innerHTML = source.textContent;
+                                        codecolor.addSchema(jsonResponse);
+                                        code2.innerHTML = codecolor.highlight(code2.textContent);
+                                    }
+                                    timeR2 = performance.now() - time2;
+                                    console.log('Время выполнения codecolor.js: ', timeR2 / N, ` (${Math.round(parseFloat((timeR2/N) / (timeR1/N)) * 10000)/100}%)`);
+
+                                } catch(e) {
+                                    console.error(e);
+                                }
+
+                            });
+                    });
+            };
+        </script>
+    </body>
+</html>
