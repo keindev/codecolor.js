@@ -42,8 +42,8 @@ export default class Parser {
 
                 if (existingToken.end <= newToken.start) return compare(right, right + half(tokens.length - right + 1));
                 if (existingToken.start >= newToken.end) return compare(left, left + half(right - left));
-                if (newToken.isIncludeIn(existingToken)) return NaN;
-                if (existingToken.isIncludeIn(newToken)) return -(right - 1);
+                if (newToken.isIncludedIn(existingToken)) return NaN;
+                if (existingToken.isIncludedIn(newToken)) return -(right - 1);
             }
 
             return right;

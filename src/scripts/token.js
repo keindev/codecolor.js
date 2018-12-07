@@ -18,7 +18,7 @@ export default class Token {
         this.ruleIndex = ruleIndex;
     }
 
-    isIncludeIn(token: Token): boolean {
+    isIncludedIn(token: Token): boolean {
         return this.start >= token.start && this.end <= token.end;
     }
 

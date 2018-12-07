@@ -1,9 +1,7 @@
 {
     "env": {
         "transpile": {
-            "presets": [
-                "@babel/preset-flow"
-            ]
+            "presets": [ "@babel/preset-flow" ]
         },
         "transpile-legacy": {
             "presets": [
@@ -16,10 +14,17 @@
             "comments": false
         },
         "minify": {
-            "presets": [
-                "minify"
-            ],
+            "presets": [ "minify" ],
             "comments": false
+        },
+        "test": {
+            "presets": [
+                ["@babel/preset-env", {
+                    "loose": true,
+                    "useBuiltIns": "entry"
+                }],
+                "@babel/preset-flow"
+            ]
         }
     },
     "plugins": [

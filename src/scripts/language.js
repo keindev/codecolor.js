@@ -84,6 +84,7 @@ export default class Language implements ILanguage {
             }, []);
         };
 
+        // TODO: remove getRules?! Create lang tests & transform [LANG].js to [LANG].json
         this.literals = getRules(LITERAL_NAMES, schema.literals);
         this.statements = getRules(STATEMENT_NAMES, schema.statements);
         this.masks = (typeof schema.masks === 'object') ? schema.masks : {};
