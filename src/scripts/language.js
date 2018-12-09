@@ -53,7 +53,7 @@ export const STATEMENT_NAME_KEYWORD: StatementName = 'keyword';
 export const STATEMENT_NAME_PRIMITIVE: StatementName = 'primitive';
 export const STATEMENT_NAME_BUILTIN: StatementName = 'builtin';
 
-const LITERAL_NAMES: LiteralName[] = [
+export const LITERAL_NAMES: LiteralName[] = [
     LITERAL_NAME_COMMENT,
     LITERAL_NAME_TEMPLATE,
     LITERAL_NAME_STRING,
@@ -62,7 +62,7 @@ const LITERAL_NAMES: LiteralName[] = [
     LITERAL_NAME_OPERATOR,
 ];
 
-const STATEMENT_NAMES: StatementName[] = [
+export const STATEMENT_NAMES: StatementName[] = [
     STATEMENT_NAME_KEYWORD,
     STATEMENT_NAME_PRIMITIVE,
     STATEMENT_NAME_BUILTIN,
