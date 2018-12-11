@@ -2,8 +2,15 @@ const path = require('path');
 const fs = require('fs');
 const util = require('util');
 const pkg = require('../package.json');
-const dir = 'dist';
-const banner =
+
+const readdir = util.promisify(fs.readdir);
+const readFile = util.promisify(fs.readFile);
+const writeFile = util.promisify(fs.writeFile);
+
+const DIR = 'dist';
+const FILE_EXTNAME = '.js';
+const DELIMETER = `\n\n`;
+const BANNER =
 `/*!
  * ${pkg.name} v${pkg.version}
  * ${pkg.homepage}
@@ -12,26 +19,20 @@ const banner =
  * Released under the ${pkg.license} License.
  */`;
 
-const readdir = util.promisify(fs.readdir);
-const readFile = util.promisify(fs.readFile);
-const writeFile = util.promisify(fs.writeFile);
-
-async function appendBanner() {
+(async function() {
     try {
-        const files = await readdir(dir);
+        const fileNames = await readdir(DIR);
 
         for (const file of files) {
-            const filePath = path.join(dir, file);
+            const filePath = path.join(DIR, file);
 
-            if (path.extname(filePath) === '.js') {
+            if (path.extname(filePath) === FILE_EXTNAME) {
                 const data = await readFile(filePath);
 
-                await writeFile(filePath, [banner, data.toString()].join(`\n\n`));
+                await writeFile(filePath, [BANNER, data.toString()].join(DELIMETER));
             }
         }
     } catch(err) {
         throw err;
     }
-}
-
-appendBanner();
+})();

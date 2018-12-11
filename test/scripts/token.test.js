@@ -3,13 +3,13 @@ import { LITERAL_NAME_STRING, LITERAL_NAME_FRAGMENT } from '../../src/scripts/la
 
 const start = 1;
 const ruleIndex = 0;
-const value = "A";
+const value = 'A';
 const offset = value.length;
 const token1 = new Token(LITERAL_NAME_STRING, value, start + offset, ruleIndex);
 const token2 = new Token(LITERAL_NAME_FRAGMENT, value.repeat(3), start, ruleIndex);
 const token3 = new Token(LITERAL_NAME_FRAGMENT, value.repeat(4), start + offset * 4, ruleIndex);
 
-describe('Check Token', () => {
+describe('Token', () => {
     it('creating (STRING)', () => {
         expect(token1.value).toBe(value);
         expect(token1.start).toBe(start + offset);

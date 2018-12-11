@@ -2,11 +2,16 @@
     "root": true,
     "parser": "babel-eslint",
     "plugins": [
-        "flowtype"
+        "flowtype",
+        "jest"
     ],
+    "env": {
+        "jest/globals": true
+    },
     "extends": [
         "airbnb-base",
-        "plugin:flowtype/recommended"
+        "plugin:flowtype/recommended",
+        "plugin:jest/recommended"
     ],
     "rules": {
         "max-len": ["error", { "code": 120 }],
@@ -16,6 +21,6 @@
         "no-plusplus": 0,
         "no-return-assign": ["error", "except-parens"],
         "no-cond-assign": ["error", "except-parens"],
-        "func-names": ["error", "as-needed"]
+        "func-names": ["error", "as-needed"],
     }
 }

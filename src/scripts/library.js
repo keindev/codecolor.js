@@ -8,8 +8,8 @@ import { version } from '../../package.json';
 type Version = string;
 
 class Library {
-    +version: Version = version;
-    +languages: Languages = {};
+    version: Version = version;
+    languages: Languages = {};
     activeSchema: LanguageName;
 
     highlight(code: string, schemaName?: LanguageName): string {
