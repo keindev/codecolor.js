@@ -1,5 +1,6 @@
 import * as Language from '../../src/scripts/language';
 
+const LanguageClass = Language.default;
 const ANY_LANGUAGE_NAME = 'any';
 const ANY_LITERAL_REGEXP = 'any';
 const ANY_STATEMENT_CHARS = ['A', 'B', 'C'];
@@ -25,7 +26,7 @@ Language.STATEMENT_NAMES.forEach((name, i) => {
     });
 });
 
-const language = new Language.default(schema);
+const language = new LanguageClass(schema);
 
 describe('Language', () => {
     it('creating', () => {

@@ -3,15 +3,16 @@ const fs = require('fs');
 const util = require('util');
 const pkg = require('../package.json');
 
+// TODO:  "lint:build": "eslint ./build",
+
 const readdir = util.promisify(fs.readdir);
 const readFile = util.promisify(fs.readFile);
 const writeFile = util.promisify(fs.writeFile);
 
 const DIR = 'dist';
 const FILE_EXTNAME = '.js';
-const DELIMETER = `\n\n`;
-const BANNER =
-`/*!
+const DELIMETER = '\n\n';
+const BANNER = `/*!
  * ${pkg.name} v${pkg.version}
  * ${pkg.homepage}
  *
@@ -19,9 +20,9 @@ const BANNER =
  * Released under the ${pkg.license} License.
  */`;
 
-(async function() {
+const start = async function() {
     try {
-        const fileNames = await readdir(DIR);
+        const files = await readdir(DIR);
 
         for (const file of files) {
             const filePath = path.join(DIR, file);
@@ -32,7 +33,9 @@ const BANNER =
                 await writeFile(filePath, [BANNER, data.toString()].join(DELIMETER));
             }
         }
-    } catch(err) {
+    } catch (err) {
         throw err;
     }
-})();
+}
+
+start();

@@ -22,5 +22,6 @@
         "no-return-assign": ["error", "except-parens"],
         "no-cond-assign": ["error", "except-parens"],
         "func-names": ["error", "as-needed"],
+        "import/no-extraneous-dependencies": ["error", {"devDependencies": true}]
     }
 }
