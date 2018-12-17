@@ -44,7 +44,7 @@ describe('Check Library', () => {
         expect(library.activeSchema).toBeUndefined();
     });
 
-    describe('languages', () => {
+    describe('Languages: ', () => {
         try {
             const schemaFiles: string[] = fs.readdirSync(LANGUAGES_DIR);
             const getLanguagesCount = (): number => Object.keys(library.languages).length;
@@ -54,8 +54,8 @@ describe('Check Library', () => {
                 const schema: any = JSON.parse(fs.readFileSync(path.join(LANGUAGES_DIR, schemaFile), ENCODING));
                 const count: number = getLanguagesCount();
 
-                describe(`${languageName}`, () => {
-                    it('schema', () => {
+                describe(`- ${languageName}: `, () => {
+                    it('# Schema', () => {
                         expect(schema.name).toBe(languageName);
 
                         library.addSchema(schema);
@@ -67,7 +67,7 @@ describe('Check Library', () => {
                     const markups: Markups = getMarkups(languageName);
 
                     Object.keys(markups).forEach((markupName) => {
-                        it(markupName, () => {
+                        it(`- ${markupName}`, () => {
                             const { code, html } = markups[markupName];
 
                             expect(code.length).toBeGreaterThan(0);
