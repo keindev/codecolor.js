@@ -1,8 +1,9 @@
-// @flow
+/* @flow */
 
 import Parser from './parser';
-import Language from './language';
-import type { ILanguageSchema, Languages, LanguageName } from './language';
+import type { Languages } from './parser';
+import { Language } from './language';
+import type { ISchema, LanguageName } from './language';
 import { version } from '../../package.json';
 
 type Version = string;
@@ -20,8 +21,8 @@ class Library {
         ].join('');
     }
 
-    addSchema(schema: ILanguageSchema): string {
-        this.languages[schema.name] = new Language(schema);
+    addSchema(schema: ISchema): string {
+        this.languages[schema.name] = new Language(schema.name, schema);
         this.activeSchema = schema.name;
 
         return schema.name;

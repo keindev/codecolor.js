@@ -1,13 +1,15 @@
-import Token from '../../src/scripts/token';
-import { LITERAL_NAME_STRING, LITERAL_NAME_FRAGMENT } from '../../src/scripts/language';
+/* @flow */
 
-const start = 1;
-const ruleIndex = 0;
-const value = 'A';
-const offset = value.length;
-const token1 = new Token(LITERAL_NAME_STRING, value, start + offset, ruleIndex);
-const token2 = new Token(LITERAL_NAME_FRAGMENT, value.repeat(3), start, ruleIndex);
-const token3 = new Token(LITERAL_NAME_FRAGMENT, value.repeat(4), start + offset * 4, ruleIndex);
+import Token from '../../src/scripts/token';
+import { literals } from '../../src/scripts/language';
+
+const start: number = 1;
+const ruleIndex: number = 0;
+const value: string = 'A';
+const offset: number = value.length;
+const token1: Token = new Token(literals.string, value, start + offset, ruleIndex);
+const token2: Token = new Token(literals.fragment, value.repeat(3), start, ruleIndex);
+const token3: Token = new Token(literals.fragment, value.repeat(4), start + offset * 4, ruleIndex);
 
 describe('Token', () => {
     it('creating (STRING)', () => {

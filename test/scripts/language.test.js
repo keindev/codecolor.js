@@ -1,38 +1,50 @@
-import * as Language from '../../src/scripts/language';
+/* @flow */
 
-const LanguageClass = Language.default;
-const ANY_LANGUAGE_NAME = 'any';
-const ANY_LITERAL_REGEXP = 'any';
-const ANY_STATEMENT_CHARS = ['A', 'B', 'C'];
-const ANY_RULE_INDEX = 0;
-const ANY_MASK_RULE = [ANY_LITERAL_REGEXP, ANY_LANGUAGE_NAME];
-const schema = {
+import { Language, literals, statements } from '../../src/scripts/language';
+import type {
+    ISchema,
+    LiteralName,
+    StatementName,
+    StatementRuleName,
+} from '../../src/scripts/language';
+
+const ANY_LANGUAGE_NAME: string = 'any';
+const ANY_LITERAL_REGEXP: string = 'any';
+const ANY_STATEMENT_CHARS: StatementRuleName[] = ['A', 'B', 'C'];
+const ANY_RULE_INDEX: number = 0;
+const ANY_MASK_RULE: [string, string] = [ANY_LITERAL_REGEXP, ANY_LANGUAGE_NAME];
+const LITERAL_NAMES = Object.keys(literals);
+const STATEMENT_NAMES = Object.keys(statements);
+const schema: ISchema = {
     name: ANY_LANGUAGE_NAME,
     literals: {},
     statements: {},
     masks: {},
 };
 
-Language.LITERAL_NAMES.forEach((name) => {
+LITERAL_NAMES.forEach((name: LiteralName) => {
     schema.literals[name] = [ANY_LITERAL_REGEXP];
     schema.masks[name] = [ANY_MASK_RULE];
 });
 
-Language.STATEMENT_NAMES.forEach((name, i) => {
+STATEMENT_NAMES.forEach((name, i) => {
     schema.statements[name] = {};
 
-    ANY_STATEMENT_CHARS.forEach((char) => {
+    ANY_STATEMENT_CHARS.forEach((char: StatementRuleName) => {
         schema.statements[name][char] = [char.repeat(i + 1)];
     });
 });
 
-const language = new LanguageClass(schema);
+const language: Language = new Language(ANY_LANGUAGE_NAME, schema);
 
 describe('Language', () => {
     it('creating', () => {
-        expect(language.name).toBeUndefined();
-        expect(language.literals.length).toBe(Language.LITERAL_NAMES.length);
-        expect(language.statements.length).toBe(Language.STATEMENT_NAMES.length);
+        expect(language.literalRules.length).toBe(LITERAL_NAMES.length);
+        expect(language.literalNames).toEqual(LITERAL_NAMES);
+
+        expect(language.statementRules.length).toBe(STATEMENT_NAMES.length);
+        expect(language.statementNames).toEqual(STATEMENT_NAMES);
+
         expect(language.masks).toEqual(schema.masks);
     });
 
@@ -40,16 +52,16 @@ describe('Language', () => {
         let i = 0;
 
         language.eachLiterals((name, expression, ruleIndex) => {
-            expect(name).toBe(Language.LITERAL_NAMES[i++]);
+            expect(name).toBe(LITERAL_NAMES[i++]);
             expect(expression).toBe(ANY_LITERAL_REGEXP);
             expect(ruleIndex).toBe(ANY_RULE_INDEX);
 
-            if (i === Language.LITERAL_NAMES.length) done();
+            if (i === LITERAL_NAMES.length) done();
         });
     });
 
     it('find statement by name', () => {
-        Language.STATEMENT_NAMES.forEach((name, i) => {
+        STATEMENT_NAMES.forEach((name: StatementName, i: number) => {
             ANY_STATEMENT_CHARS.forEach((char) => {
                 expect(language.getStatementName(char.repeat(i + 1))).toBe(name);
             });
@@ -57,7 +69,7 @@ describe('Language', () => {
     });
 
     it('check masked literals', () => {
-        Language.LITERAL_NAMES.forEach((name) => {
+        LITERAL_NAMES.forEach((name: LiteralName) => {
             expect(language.isMasked(name, ANY_RULE_INDEX)).toBe(true);
             expect(language.getMask(name, ANY_RULE_INDEX)).toEqual(ANY_MASK_RULE);
         });

@@ -1,11 +1,12 @@
-// @flow
+/* @flow */
 
-import Language from './language';
 import Token from './token';
 import type {
-    Languages, LanguageName,
+    Language, LanguageName,
     LiteralName, StatementName, MaskRule,
 } from './language';
+
+export type Languages = { [key: LanguageName]: Language };
 
 export default class Parser {
     code: string;

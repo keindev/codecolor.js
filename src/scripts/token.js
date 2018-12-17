@@ -1,7 +1,7 @@
-// @flow
+/* @flow */
 
+import { literals } from './language';
 import type { LiteralName } from './language';
-import { LITERAL_NAME_FRAGMENT } from './language';
 
 export default class Token {
     name: LiteralName;
@@ -23,6 +23,6 @@ export default class Token {
     }
 
     isFragment(): boolean {
-        return this.name === LITERAL_NAME_FRAGMENT;
+        return this.name === literals.fragment;
     }
 }

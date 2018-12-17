@@ -1,37 +1,36 @@
-// @flow
-
-// TODO: test typing
+/* @flow */
 
 import path from 'path';
 import fs from 'fs';
 import library from '../../src/scripts/library';
 
-const LANGUAGES_DIR = './src/languages';
-const MARKUP_DIR = './test/languages/markup';
-const MARKUP_EXTENSION = '.html';
-const SCHEMA_EXTENSION = '.json';
-const ENCODING = 'utf8';
+const LANGUAGES_DIR: string = './src/languages';
+const MARKUP_DIR: string = './test/languages/markup';
+const MARKUP_EXTENSION: string = '.html';
+const SCHEMA_EXTENSION: string = '.json';
+const ENCODING: string = 'utf8';
 
-function getMarkups(languageName) {
-    const dirPath = path.join(MARKUP_DIR, languageName);
-    const files = fs.readdirSync(dirPath);
-    const markups = {};
-    let basename;
-    let extension;
-    let text;
+type Markup = { html: string, code: string };
+type Markups = { [key: string]: Markup };
 
-    files.forEach((file) => {
+function getMarkups(languageName: string): Markups {
+    const dirPath: string = path.join(MARKUP_DIR, languageName);
+    const files: string[] = fs.readdirSync(dirPath);
+    const markups: Markups = {};
+    let basename: string;
+    let extension: string;
+    let text: string;
+
+    files.forEach((file: string) => {
         extension = path.extname(file);
         basename = path.basename(file, extension);
-        text = fs.readFileSync(path.join(dirPath, file), ENCODING);
+        text = String(fs.readFileSync(path.join(dirPath, file), ENCODING)).replace(/\n$/, '');
         markups[basename] = markups[basename] || {};
 
         if (extension === MARKUP_EXTENSION) {
-            // FIXME: remove trim
-            markups[basename].html = text.trim();
+            markups[basename].html = text;
         } else {
-            // FIXME: remove trim
-            markups[basename].code = text.trim();
+            markups[basename].code = text;
         }
     });
 
@@ -47,13 +46,13 @@ describe('Check Library', () => {
 
     describe('languages', () => {
         try {
-            const schemaFiles = fs.readdirSync(LANGUAGES_DIR);
-            const getLanguagesCount = () => Object.keys(library.languages).length;
+            const schemaFiles: string[] = fs.readdirSync(LANGUAGES_DIR);
+            const getLanguagesCount = (): number => Object.keys(library.languages).length;
 
-            schemaFiles.forEach((schemaFile) => {
-                const languageName = path.basename(schemaFile, SCHEMA_EXTENSION);
-                const schema = JSON.parse(fs.readFileSync(path.join(LANGUAGES_DIR, schemaFile), ENCODING));
-                const count = getLanguagesCount();
+            schemaFiles.forEach((schemaFile: string) => {
+                const languageName: string = path.basename(schemaFile, SCHEMA_EXTENSION);
+                const schema: any = JSON.parse(fs.readFileSync(path.join(LANGUAGES_DIR, schemaFile), ENCODING));
+                const count: number = getLanguagesCount();
 
                 describe(`${languageName}`, () => {
                     it('schema', () => {
@@ -65,7 +64,7 @@ describe('Check Library', () => {
                         expect(getLanguagesCount()).toBe(count + 1);
                     });
 
-                    const markups = getMarkups(languageName);
+                    const markups: Markups = getMarkups(languageName);
 
                     Object.keys(markups).forEach((markupName) => {
                         it(markupName, () => {
