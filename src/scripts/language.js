@@ -29,7 +29,8 @@ export type StatementRuleName = 'A' | 'a' | 'B' | 'b' | 'C' | 'c' | 'D' | 'd' | 
 export type StatementRule = { [ StatementRuleName ]: LiteralRule };
 export type Statements = { [ key: StatementName ]: StatementRule };
 
-export type MaskRule = [string, LanguageName];
+export type MaskName = string;
+export type MaskRule = [string, LanguageName] | MaskName;
 export type Masks = { [ key: LiteralName | StatementName ]: MaskRule[] };
 
 export interface ISchema {
@@ -98,6 +99,6 @@ export class Language {
     }
 
     isMasked(name: LiteralName | StatementName, index: number): boolean {
-        return Array.isArray(this.masks[name]) && Array.isArray(this.masks[name][index]);
+        return Array.isArray(this.masks[name]) && !!this.masks[name][index];
     }
 }

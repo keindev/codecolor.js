@@ -84,7 +84,7 @@
       };
 
       _proto.isMasked = function isMasked(name, index) {
-        return Array.isArray(this.masks[name]) && Array.isArray(this.masks[name][index]);
+        return Array.isArray(this.masks[name]) && !!this.masks[name][index];
       };
 
       return Language;
@@ -181,18 +181,23 @@
           result = token.value;
         } else if (this.language.isMasked(name, token.ruleIndex)) {
           var mask = this.language.getMask(name, token.ruleIndex);
-          var regExp = new RegExp(mask[0], 'gm');
-          var parts = [];
-          var position = 0;
-          var match;
 
-          while (match = regExp.exec(token.value)) {
-            parts.push(token.value.substring(position, match.index), getTag(name + "-mask-" + token.ruleIndex, Parser.parse(match[0], mask[1], this.languages)));
-            position = regExp.lastIndex;
+          if (Array.isArray(mask)) {
+            var regExp = new RegExp(mask[0], 'gm');
+            var parts = [];
+            var position = 0;
+            var match;
+
+            while (match = regExp.exec(token.value)) {
+              parts.push(token.value.substring(position, match.index), getTag(name + "-mask-" + token.ruleIndex, Parser.parse(match[0], mask[1], this.languages)));
+              position = regExp.lastIndex;
+            }
+
+            parts.push(token.value.substring(position, token.value.length));
+            result = getTag(name, parts.join(''));
+          } else {
+            result = getTag(name + "-mask-" + mask, token.value);
           }
-
-          parts.push(token.value.substring(position, token.value.length));
-          result = getTag(name, parts.join(''));
         } else {
           result = getTag(name, token.value);
         }

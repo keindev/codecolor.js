@@ -76,20 +76,25 @@ export default class Parser {
             result = token.value;
         } else if (this.language.isMasked(name, token.ruleIndex)) {
             const mask: MaskRule = this.language.getMask(name, token.ruleIndex);
-            const regExp: RegExp = new RegExp(mask[0], 'gm');
-            const parts: string[] = [];
-            let position: number = 0;
-            let match: RegExp$matchResult | null;
 
-            while ((match = regExp.exec(token.value))) {
-                parts.push(token.value.substring(position, match.index),
-                    getTag(`${name}-mask-${token.ruleIndex}`, Parser.parse(match[0], mask[1], this.languages)));
-                position = regExp.lastIndex;
+            if (Array.isArray(mask)) {
+                const regExp: RegExp = new RegExp(mask[0], 'gm');
+                const parts: string[] = [];
+                let position: number = 0;
+                let match: RegExp$matchResult | null;
+
+                while ((match = regExp.exec(token.value))) {
+                    parts.push(token.value.substring(position, match.index),
+                        getTag(`${name}-mask-${token.ruleIndex}`, Parser.parse(match[0], mask[1], this.languages)));
+                    position = regExp.lastIndex;
+                }
+
+                parts.push(token.value.substring(position, token.value.length));
+
+                result = getTag(name, parts.join(''));
+            } else {
+                result = getTag(`${name}-mask-${mask}`, token.value);
             }
-
-            parts.push(token.value.substring(position, token.value.length));
-
-            result = getTag(name, parts.join(''));
         } else {
             result = getTag(name, token.value);
         }

@@ -1,1 +1,18 @@
 `string ${foo + `str${undefined}ing`}`;
+
+{
+  key0: value,
+  key1: value,
+  'key-2': value,
+  key_3: false ? undefined : true
+}
+
+text.next().wait().continue(0);
+
+let a = x.runSome(1);
+
+function a() {
+
+}
+
+`string ${foo + `str${undefined}ing`}`;
