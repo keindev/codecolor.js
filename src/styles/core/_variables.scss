@@ -1,0 +1,38 @@
+$prefix: 'cc-' !default;
+
+$container-color: #abb2bf !default;
+$container-bg: #282c34 !default;
+
+// Code literals -----------------------------------------------------------
+$literals: () !default;
+$literals: map-merge(
+    (
+        comment: #5c6370,
+        number: #d19a66,
+        operator: #3caec3,
+        string: #98c379,
+        template: #98c379,
+    ),
+    $literals
+);
+
+// Code statements ---------------------------------------------------------
+$statements: () !default;
+$statements: map-merge(
+    (
+        builtin: #e6c07b,
+        keyword: #c678dd,
+        primitive: #56b6c2,
+    ),
+    $statements
+);
+
+// Code masks --------------------------------------------------------------
+$masks: () !default;
+$masks: map-merge(
+    (
+        mask-1: #e06c75,
+        mask-2: #61aeee,
+    ),
+    $masks
+);

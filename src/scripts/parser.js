@@ -85,7 +85,7 @@ export default class Parser {
 
                 while ((match = regExp.exec(token.value))) {
                     parts.push(token.value.substring(position, match.index),
-                        getTag(`${name}-mask-${token.ruleIndex}`, Parser.parse(match[0], mask[1], this.languages)));
+                        getTag(mask[2], Parser.parse(match[0], mask[1], this.languages)));
                     position = regExp.lastIndex;
                 }
 
@@ -93,7 +93,7 @@ export default class Parser {
 
                 result = getTag(name, parts.join(''));
             } else {
-                result = getTag(`${name}-mask-${mask}`, token.value);
+                result = getTag(mask, token.value);
             }
         } else {
             result = getTag(name, token.value);

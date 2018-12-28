@@ -1,0 +1,8 @@
+
+@mixin colorize($map) {
+    @each $name, $value in $map {
+        .#{$prefix}#{$name} {
+            color: $value;
+        }
+    }
+}

@@ -3,6 +3,9 @@
 import { Language, literals, statements } from '../../src/scripts/language';
 import type {
     ISchema,
+    LanguageName,
+    Expression,
+    MaskName,
     LiteralName,
     StatementName,
     StatementRuleName,
@@ -10,9 +13,10 @@ import type {
 
 const ANY_LANGUAGE_NAME: string = 'any';
 const ANY_LITERAL_REGEXP: string = 'any';
+const ANY_MASK_NAME: string = 'any';
 const ANY_STATEMENT_CHARS: StatementRuleName[] = ['A', 'B', 'C'];
 const ANY_RULE_INDEX: number = 0;
-const ANY_MASK_RULE: [string, string] = [ANY_LITERAL_REGEXP, ANY_LANGUAGE_NAME];
+const ANY_MASK_RULE: [Expression, LanguageName, MaskName] = [ANY_LITERAL_REGEXP, ANY_LANGUAGE_NAME, ANY_MASK_NAME];
 const LITERAL_NAMES = Object.keys(literals);
 const STATEMENT_NAMES = Object.keys(statements);
 const schema: ISchema = {

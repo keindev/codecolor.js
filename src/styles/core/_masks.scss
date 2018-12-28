@@ -1,9 +1,0 @@
-@mixin mask($name, $colors) {
-    @each $color in $colors {
-        $i: index($colors, $color) - 1;
-
-        .#{$prefix}#{$name}-mask-#{$i} {
-            color: $color;
-        }
-    }
-}

@@ -1,10 +1,1 @@
 @import '../core/core';
-
-
-// FIXME: all masks styles in core
-@include mask($literal-template-name, (#e06c75));
-
-// TODO: min mask names (combine main literal cls & mask name or index)
-.cc-template-mask-fn {
-    color: red;
-}

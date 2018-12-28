@@ -17,8 +17,10 @@ export const statements = {
 
 export type LanguageName = string;
 
+export type Expression = string;
+
 export type LiteralName = $Keys<typeof literals>;
-export type LiteralRule = string[];
+export type LiteralRule = Expression[];
 export type Literals = { [ key: LiteralName ]: LiteralRule };
 
 export type StatementName = $Keys<typeof statements>;
@@ -30,7 +32,7 @@ export type StatementRule = { [ StatementRuleName ]: LiteralRule };
 export type Statements = { [ key: StatementName ]: StatementRule };
 
 export type MaskName = string;
-export type MaskRule = [string, LanguageName] | MaskName;
+export type MaskRule = [Expression, LanguageName, MaskName] | MaskName;
 export type Masks = { [ key: LiteralName | StatementName ]: MaskRule[] };
 
 export interface ISchema {
