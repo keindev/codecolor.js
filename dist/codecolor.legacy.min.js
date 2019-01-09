@@ -2,7 +2,7 @@
  * Codecolor.js v1.0.0
  * https://codecolorjs.pw/
  *
- * (c) 2018-2018 Daniil Ryazanov <opensource@tagproject.ru>
+ * (c) 2018-2019 Daniil Ryazanov <opensource@tagproject.ru>
  * Released under the MIT License.
  */
 
