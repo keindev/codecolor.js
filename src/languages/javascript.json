@@ -16,10 +16,10 @@
             "([\"'])(?:(?=(\\\\?))\\2.)*?\\1",
             "\\/[\\x00-\\x7F][^\\s]{0,}\\/[gmisu]{0,}"
         ],
-        "fragment": [
+        "source": [
             "(?<!\\.)\\w{2,}\\d{0,}"
         ],
-        "number": [
+        "constant": [
             "\\d*[.,]?\\d+(?:[eEXx][-+]?[\\dA-F]+)?"
         ],
         "operator": [
@@ -28,16 +28,16 @@
         ]
     },
     "statements": {
-        "builtin": {
+        "meta": {
             "A": [ "Array", "ArrayBuffer" ],
             "B": [ "Boolean" ],
             "D": [ "DataView", "Date" ],
             "E": [ "Error", "EvalError" ],
             "F": [ "Float32Array", "Float64Array", "Function" ],
-            "I": [ "Int16Array", "Int32Array", "Int8Array", "InternalError", "Intl" ],
+            "I": [ "Infinity", "Int16Array", "Int32Array", "Int8Array", "InternalError", "Intl" ],
             "J": [ "JSON" ],
             "M": [ "Map", "Math" ],
-            "N": [ "Number" ],
+            "N": [ "Number", "NaN" ],
             "O": [ "Object" ],
             "P": [ "Promise", "Proxy" ],
             "R": [ "RangeError", "ReferenceError", "Reflect", "RegExp" ],
@@ -74,9 +74,7 @@
             "w": [ "while", "with" ],
             "y": [ "yield" ]
         },
-        "primitive": {
-            "I": [ "Infinity" ],
-            "N": [ "NaN" ],
+        "constant": {
             "f": [ "false" ],
             "n": [ "null" ],
             "t": [ "true" ],
@@ -85,12 +83,12 @@
     },
     "masks": {
         "template": [
-            ["\\$\\{(?:[^}{]+|\\{(?:[^}{]+|\\{[^}{]*\\})*\\})*\\}", "javascript", "mask-1"],
-            "mask-2",
-            "mask-2",
-            "mask-3",
-            "mask-3",
-            "mask-1"
+            ["\\$\\{(?:[^}{]+|\\{(?:[^}{]+|\\{[^}{]*\\})*\\})*\\}", "javascript", "variable"],
+            "entity",
+            "entity",
+            "constant",
+            "constant",
+            "variable"
         ]
     }
 }

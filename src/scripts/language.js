@@ -1,18 +1,20 @@
 /* @flow */
 
+// FIXME: rename literals & statements
+
 export const literals = {
     comment: 'comment',
     template: 'template',
     string: 'string',
-    fragment: 'fragment',
-    number: 'number',
+    source: 'source',
+    constant: 'number',
     operator: 'operator',
 };
 
 export const statements = {
     keyword: 'keyword',
-    primitive: 'primitive',
-    builtin: 'builtin',
+    constant: 'constant',
+    meta: 'builtin',
 };
 
 export type LanguageName = string;

@@ -3,37 +3,41 @@ $prefix: 'cc-' !default;
 $container-color: #abb2bf !default;
 $container-bg: #282c34 !default;
 
-// Code literals -----------------------------------------------------------
+$masks: () !default;
+$masks: map-merge(
+    (
+        variable: #e06c75,
+        comment: #5c6370,
+        keyword: #c678dd,
+        entity: #61afef,
+        string: #98c379,
+        template: #98c379,
+        constant: #d19a66,
+        meta: #e5c07b,
+        operator: #56b6c2,
+        source: $container-color,
+    ),
+    $masks
+);
+
 $literals: () !default;
 $literals: map-merge(
     (
-        comment: #5c6370,
-        number: #d19a66,
-        operator: #3caec3,
-        string: #98c379,
-        template: #98c379,
+        comment: map-get($masks, comment),
+        constant: map-get($masks, constant),
+        operator: map-get($masks, operator),
+        string: map-get($masks, string),
+        template: map-get($masks, template),
     ),
     $literals
 );
 
-// Code statements ---------------------------------------------------------
 $statements: () !default;
 $statements: map-merge(
     (
-        builtin: #e6c07b,
-        keyword: #c678dd,
-        primitive: #56b6c2,
+        meta: map-get($masks, meta),
+        keyword: map-get($masks, keyword),
+        constant: map-get($masks, constant),
     ),
     $statements
-);
-
-// Code masks --------------------------------------------------------------
-$masks: () !default;
-$masks: map-merge(
-    (
-        mask-1: #e06c75,
-        mask-2: #61aeee,
-        mask-3: #d19a66,
-    ),
-    $masks
 );
