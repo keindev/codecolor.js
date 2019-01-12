@@ -12,71 +12,39 @@
     (global.codecolor = factory());
 }(this, (function () { 'use strict';
 
-    var literals = {
-      comment: 'comment',
-      template: 'template',
-      string: 'string',
-      fragment: 'fragment',
-      number: 'number',
-      operator: 'operator'
-    };
-    var statements = {
-      keyword: 'keyword',
-      primitive: 'primitive',
-      builtin: 'builtin'
-    };
+    var MASK_NAMES = ['comment', 'template', 'string', 'constant', 'operator', 'variable', 'keyword', 'entity', 'meta', 'source'];
     var Language = function () {
       function Language(name, schema) {
-        var _this = this;
-
         this.name = name;
-        this.literalRules = [];
-        this.literalNames = [];
-        this.statementRules = [];
-        this.statementNames = [];
-        this.masks = {};
-        Object.keys(literals).forEach(function (literalName) {
-          if (schema.literals[literalName]) {
-            _this.literalRules.push(schema.literals[literalName]);
-
-            _this.literalNames.push(literalName);
-
-            if (schema.masks[literalName]) {
-              _this.masks[literalName] = schema.masks[literalName];
-            }
-          }
-        });
-        Object.keys(statements).forEach(function (statementName) {
-          if (schema.statements[statementName]) {
-            _this.statementRules.push(schema.statements[statementName]);
-
-            _this.statementNames.push(statementName);
-          }
-        });
+        this.expressions = schema.expressions.values;
+        this.activeExpressions = schema.expressions.names;
+        this.keywords = schema.keywords.values;
+        this.activeKeywords = schema.keywords.names;
+        this.masks = schema.masks;
       }
 
       var _proto = Language.prototype;
 
-      _proto.eachLiterals = function eachLiterals(callback) {
-        var _this2 = this;
+      _proto.eachExp = function eachExp(callback) {
+        var _this = this;
 
-        this.literalRules.forEach(function (rule, literalIndex) {
+        this.expressions.forEach(function (rule, expressionIndex) {
           rule.forEach(function (expression, ruleIndex) {
-            callback(_this2.literalNames[literalIndex], expression, ruleIndex);
+            callback(_this.activeExpressions[expressionIndex], expression, ruleIndex);
           });
         });
       };
 
-      _proto.getStatementName = function getStatementName(value) {
+      _proto.getKeywordName = function getKeywordName(value) {
         var char = value[0];
-        var statement;
+        var rule;
         var i = 0;
 
-        while ((statement = this.statementRules[i]) && !(statement[char] && ~statement[char].indexOf(value))) {
+        while ((rule = this.keywords[i]) && !(rule[char] && ~rule[char].indexOf(value))) {
           i++;
         }
 
-        return this.statementNames[i];
+        return this.activeKeywords[i];
       };
 
       _proto.getMask = function getMask(name, index) {
@@ -105,8 +73,8 @@
         return this.start >= token.start && this.end <= token.end;
       };
 
-      _proto.isFragment = function isFragment() {
-        return this.name === literals.fragment;
+      _proto.isSource = function isSource() {
+        return this.name === MASK_NAMES[MASK_NAMES.length - 1];
       };
 
       return Token;
@@ -154,7 +122,7 @@
           return right;
         };
 
-        this.language.eachLiterals(function (name, expression, ruleIndex) {
+        this.language.eachExp(function (name, expression, ruleIndex) {
           regExp = new RegExp(expression, 'gm');
 
           while (match = regExp.exec(_this.code)) {
@@ -174,7 +142,7 @@
           return "<span class=\"cc-" + className + "\">" + text + "</span>";
         };
 
-        var name = token.isFragment() ? this.language.getStatementName(token.value) : token.name;
+        var name = token.isSource() ? this.language.getKeywordName(token.value) : token.name;
         var result;
 
         if (typeof name === 'undefined') {

@@ -3,7 +3,7 @@
 import Token from './token';
 import type {
     Language, LanguageName,
-    LiteralName, StatementName, MaskRule,
+    MaskName, MaskRule,
 } from './language';
 
 export type Languages = { [key: LanguageName]: Language };
@@ -50,7 +50,7 @@ export default class Parser {
             return right;
         };
 
-        this.language.eachLiterals((name: LiteralName, expression: string, ruleIndex: number) => {
+        this.language.eachExp((name: MaskName, expression: string, ruleIndex: number) => {
             regExp = new RegExp(expression, 'gm');
 
             while ((match = regExp.exec(this.code))) {
@@ -67,8 +67,8 @@ export default class Parser {
 
     wrap(token: Token): string {
         const getTag = (className: string, text: string): string => `<span class="cc-${className}">${text}</span>`;
-        const name: LiteralName | StatementName | void = token.isFragment()
-            ? this.language.getStatementName(token.value)
+        const name: MaskName | void = token.isSource()
+            ? this.language.getKeywordName(token.value)
             : token.name;
         let result: string;
 

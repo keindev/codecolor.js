@@ -12,62 +12,35 @@
     (global.codecolor = factory());
 }(this, (function () { 'use strict';
 
-    const literals = {
-      comment: 'comment',
-      template: 'template',
-      string: 'string',
-      fragment: 'fragment',
-      number: 'number',
-      operator: 'operator'
-    };
-    const statements = {
-      keyword: 'keyword',
-      primitive: 'primitive',
-      builtin: 'builtin'
-    };
+    // TODO: use that sequency in language builder script
+    const MASK_NAMES = ['comment', 'template', 'string', 'constant', 'operator', 'variable', 'keyword', 'entity', 'meta', 'source'];
     class Language {
       constructor(name, schema) {
         // TODO: remove getRules?! Create lang tests & transform [LANG].js to [LANG].json
         this.name = name;
-        this.literalRules = [];
-        this.literalNames = [];
-        this.statementRules = [];
-        this.statementNames = [];
-        this.masks = {};
-        Object.keys(literals).forEach(literalName => {
-          if (schema.literals[literalName]) {
-            this.literalRules.push(schema.literals[literalName]);
-            this.literalNames.push(literalName);
-
-            if (schema.masks[literalName]) {
-              this.masks[literalName] = schema.masks[literalName];
-            }
-          }
-        });
-        Object.keys(statements).forEach(statementName => {
-          if (schema.statements[statementName]) {
-            this.statementRules.push(schema.statements[statementName]);
-            this.statementNames.push(statementName);
-          }
-        });
+        this.expressions = schema.expressions.values;
+        this.activeExpressions = schema.expressions.names;
+        this.keywords = schema.keywords.values;
+        this.activeKeywords = schema.keywords.names;
+        this.masks = schema.masks;
       }
 
-      eachLiterals(callback) {
-        this.literalRules.forEach((rule, literalIndex) => {
+      eachExp(callback) {
+        this.expressions.forEach((rule, expressionIndex) => {
           rule.forEach((expression, ruleIndex) => {
-            callback(this.literalNames[literalIndex], expression, ruleIndex);
+            callback(this.activeExpressions[expressionIndex], expression, ruleIndex);
           });
         });
       }
 
-      getStatementName(value) {
+      getKeywordName(value) {
         const char = value[0];
-        let statement;
+        let rule;
         let i = 0;
 
-        while ((statement = this.statementRules[i]) && !(statement[char] && ~statement[char].indexOf(value))) i++;
+        while ((rule = this.keywords[i]) && !(rule[char] && ~rule[char].indexOf(value))) i++;
 
-        return this.statementNames[i];
+        return this.activeKeywords[i];
       }
 
       getMask(name, index) {
@@ -93,8 +66,8 @@
         return this.start >= token.start && this.end <= token.end;
       }
 
-      isFragment() {
-        return this.name === literals.fragment;
+      isSource() {
+        return this.name === MASK_NAMES[MASK_NAMES.length - 1];
       }
 
     }
@@ -137,7 +110,7 @@
           return right;
         };
 
-        this.language.eachLiterals((name, expression, ruleIndex) => {
+        this.language.eachExp((name, expression, ruleIndex) => {
           regExp = new RegExp(expression, 'gm');
 
           while (match = regExp.exec(this.code)) {
@@ -155,7 +128,7 @@
       wrap(token) {
         const getTag = (className, text) => `<span class="cc-${className}">${text}</span>`;
 
-        const name = token.isFragment() ? this.language.getStatementName(token.value) : token.name;
+        const name = token.isSource() ? this.language.getKeywordName(token.value) : token.name;
         let result;
 
         if (typeof name === 'undefined') {

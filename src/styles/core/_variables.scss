@@ -19,25 +19,3 @@ $masks: map-merge(
     ),
     $masks
 );
-
-$literals: () !default;
-$literals: map-merge(
-    (
-        comment: map-get($masks, comment),
-        constant: map-get($masks, constant),
-        operator: map-get($masks, operator),
-        string: map-get($masks, string),
-        template: map-get($masks, template),
-    ),
-    $literals
-);
-
-$statements: () !default;
-$statements: map-merge(
-    (
-        meta: map-get($masks, meta),
-        keyword: map-get($masks, keyword),
-        constant: map-get($masks, constant),
-    ),
-    $statements
-);

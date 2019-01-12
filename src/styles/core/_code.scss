@@ -1,12 +1,5 @@
-// Literals -----------------------------------------------------------
-@include colorize($literals);
+@include colorize($masks);
 
 .#{$prefix}comment {
     font-style: italic;
 }
-
-// Statements ---------------------------------------------------------
-@include colorize($statements);
-
-// Masks --------------------------------------------------------------
-@include colorize($masks);
