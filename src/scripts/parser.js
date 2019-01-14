@@ -74,10 +74,14 @@ export default class Parser {
 
         if (typeof name === 'undefined') {
             result = token.value;
-        } else if (this.language.isMasked(name, token.ruleIndex)) {
-            const mask: MaskRule = this.language.getMask(name, token.ruleIndex);
+        } else {
+            const mask: MaskRule | void = this.language.getMask(name, token.ruleIndex);
 
-            if (Array.isArray(mask)) {
+            if (typeof mask === 'undefined') {
+                result = getTag(name, token.value);
+            } else if (typeof mask === 'string') {
+                result = getTag(mask, token.value);
+            } else {
                 const regExp: RegExp = new RegExp(mask[0], 'gm');
                 const parts: string[] = [];
                 let position: number = 0;
@@ -92,11 +96,7 @@ export default class Parser {
                 parts.push(token.value.substring(position, token.value.length));
 
                 result = getTag(name, parts.join(''));
-            } else {
-                result = getTag(mask, token.value);
             }
-        } else {
-            result = getTag(name, token.value);
         }
 
         return result;

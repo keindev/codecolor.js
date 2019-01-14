@@ -48,11 +48,13 @@
       };
 
       _proto.getMask = function getMask(name, index) {
-        return this.masks[name][index];
-      };
+        var mask;
 
-      _proto.isMasked = function isMasked(name, index) {
-        return Array.isArray(this.masks[name]) && !!this.masks[name][index];
+        if (typeof this.masks !== 'undefined' && Array.isArray(this.masks[name]) && !!this.masks[name][index]) {
+          mask = this.masks[name][index];
+        }
+
+        return mask;
       };
 
       return Language;
@@ -147,10 +149,14 @@
 
         if (typeof name === 'undefined') {
           result = token.value;
-        } else if (this.language.isMasked(name, token.ruleIndex)) {
+        } else {
           var mask = this.language.getMask(name, token.ruleIndex);
 
-          if (Array.isArray(mask)) {
+          if (typeof mask === 'undefined') {
+            result = getTag(name, token.value);
+          } else if (typeof mask === 'string') {
+            result = getTag(mask, token.value);
+          } else {
             var regExp = new RegExp(mask[0], 'gm');
             var parts = [];
             var position = 0;
@@ -163,11 +169,7 @@
 
             parts.push(token.value.substring(position, token.value.length));
             result = getTag(name, parts.join(''));
-          } else {
-            result = getTag(mask, token.value);
           }
-        } else {
-          result = getTag(name, token.value);
         }
 
         return result;

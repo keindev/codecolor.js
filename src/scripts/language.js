@@ -21,7 +21,7 @@ export interface ISchema {
     name: LanguageName;
     expressions: Rule<ExpressionRule>;
     keywords: Rule<KeywordRule>;
-    masks: { [key: MaskName]: MaskRule[] };
+    masks?: { [key: MaskName]: MaskRule[] };
 }
 
 // TODO: use that sequency in language builder script
@@ -64,11 +64,13 @@ export class Language {
         return this.activeKeywords[i];
     }
 
-    getMask(name: MaskName, index: number): MaskRule {
-        return this.masks[name][index];
-    }
+    getMask(name: MaskName, index: number): MaskRule | void {
+        let mask: MaskRule | void;
 
-    isMasked(name: MaskName, index: number): boolean {
-        return Array.isArray(this.masks[name]) && !!this.masks[name][index];
+        if (typeof this.masks !== 'undefined' && Array.isArray(this.masks[name]) && !!this.masks[name][index]) {
+            mask = this.masks[name][index];
+        }
+
+        return mask;
     }
 }

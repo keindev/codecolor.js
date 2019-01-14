@@ -1,26 +1,21 @@
 /* @flow */
 
-describe('Token', () => {
-    it('creating fixme', () => {
-        expect(2).toBe(2);
-    });
-});
-
-// FIXME: work with real lang files
-/*
 import Token from '../../src/scripts/token';
-import { literals } from '../../src/scripts/language';
+import type { MaskName } from '../../src/scripts/language';
 
 const start: number = 1;
 const ruleIndex: number = 0;
 const value: string = 'A';
 const offset: number = value.length;
-const token1: Token = new Token(literals.string, value, start + offset, ruleIndex);
-const token2: Token = new Token(literals.fragment, value.repeat(3), start, ruleIndex);
-const token3: Token = new Token(literals.fragment, value.repeat(4), start + offset * 4, ruleIndex);
+const tokenMask1: MaskName = 'string';
+const tokenMask2: MaskName = 'source';
+
+const token1: Token = new Token(tokenMask1, value, start + offset, ruleIndex);
+const token2: Token = new Token(tokenMask2, value.repeat(3), start, ruleIndex);
+const token3: Token = new Token(tokenMask2, value.repeat(4), start + offset * 4, ruleIndex);
 
 describe('Token', () => {
-    it('creating (STRING)', () => {
+    it('creating (String)', () => {
         expect(token1.value).toBe(value);
         expect(token1.start).toBe(start + offset);
         expect(token1.end).toBe(start + offset * 2);
@@ -28,7 +23,7 @@ describe('Token', () => {
         expect(token1.isSource()).toBe(false);
     });
 
-    it('creating (FRAGMENT)', () => {
+    it('creating (Source)', () => {
         expect(token2.value).toBe(value.repeat(3));
         expect(token2.start).toBe(start);
         expect(token2.end).toBe(start + offset * 3);
@@ -43,4 +38,3 @@ describe('Token', () => {
         expect(token3.isIncludedIn(token2)).toBe(false);
     });
 });
-*/
