@@ -1,0 +1,9 @@
+@each $name, $value in $masks {
+    .#{$prefix}#{$name} {
+        color: $value;
+    }
+}
+
+.#{$prefix}comment {
+    font-style: italic;
+}

@@ -1,7 +1,7 @@
 $prefix: 'cc-' !default;
 
-$container-color: #abb2bf !default;
-$container-bg: #282c34 !default;
+$color: #abb2bf !default;
+$background-color: #282c34 !default;
 
 $masks: () !default;
 $masks: map-merge(
@@ -15,7 +15,7 @@ $masks: map-merge(
         constant: #d19a66,
         meta: #e5c07b,
         operator: #56b6c2,
-        source: $container-color,
+        source: $color,
     ),
     $masks
 );

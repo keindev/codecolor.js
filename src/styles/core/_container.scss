@@ -1,7 +1,7 @@
 .#{$prefix}container {
     display: block;
-    background: $container-bg;
+    background-color: $background-color;
     padding: .5em;
-    color: $container-color;
+    color: $color;
     overflow-x: auto;
 }
