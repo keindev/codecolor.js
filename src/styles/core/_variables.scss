@@ -1,20 +1,20 @@
 $prefix: 'cc-' !default;
 
-$color: #abb2bf !default;
-$background-color: #282c34 !default;
+$color: rgba(93, 110, 129, .9) !default;
+$background-color: #eceff4 !default;
 
 $masks: () !default;
 $masks: map-merge(
     (
-        variable: #e06c75,
-        comment: #5c6370,
-        keyword: #c678dd,
-        entity: #61afef,
-        string: #98c379,
-        template: #98c379,
-        constant: #d19a66,
-        meta: #e5c07b,
-        operator: #56b6c2,
+        variable: #04a7d8,
+        comment: #14c4d4,
+        keyword: #3b53a2,
+        entity: #5d6e81,
+        string: #04a7d8,
+        template: rgba(93, 110, 129, .7),
+        constant: #04a7d8,
+        meta: rgba(93, 110, 129, .9),
+        operator: rgba(93, 110, 129, .7),
         source: $color,
     ),
     $masks
