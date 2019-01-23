@@ -1,5 +1,5 @@
 /* @flow */
-import { MASK_NAMES } from './language';
+import { MASK_NAME_SOURCE } from './language';
 import type { MaskName } from './language';
 
 export default class Token {
@@ -22,6 +22,6 @@ export default class Token {
     }
 
     isSource(): boolean {
-        return this.name === MASK_NAMES[MASK_NAMES.length - 1];
+        return this.name === MASK_NAME_SOURCE;
     }
 }

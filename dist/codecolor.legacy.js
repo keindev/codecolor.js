@@ -11,22 +11,11 @@
         ? (module.exports = factory())
         : typeof define === 'function' && define.amd
         ? define(factory)
-        : (global.codecolor = factory());
+        : ((global = global || self), (global.codecolor = factory()));
 })(this, function() {
     'use strict';
 
-    var MASK_NAMES = [
-        'comment',
-        'template',
-        'string',
-        'constant',
-        'operator',
-        'variable',
-        'keyword',
-        'entity',
-        'meta',
-        'source',
-    ];
+    var MASK_NAME_SOURCE = 'source';
     var Language = (function() {
         function Language(name, schema) {
             this.name = name;
@@ -90,7 +79,7 @@
         };
 
         _proto.isSource = function isSource() {
-            return this.name === MASK_NAMES[MASK_NAMES.length - 1];
+            return this.name === MASK_NAME_SOURCE;
         };
 
         return Token;

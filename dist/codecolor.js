@@ -11,26 +11,13 @@
         ? (module.exports = factory())
         : typeof define === 'function' && define.amd
         ? define(factory)
-        : (global.codecolor = factory());
+        : ((global = global || self), (global.codecolor = factory()));
 })(this, function() {
     'use strict';
 
-    // TODO: use that sequency in language builder script
-    const MASK_NAMES = [
-        'comment',
-        'template',
-        'string',
-        'constant',
-        'operator',
-        'variable',
-        'keyword',
-        'entity',
-        'meta',
-        'source',
-    ];
+    const MASK_NAME_SOURCE = 'source';
     class Language {
         constructor(name, schema) {
-            // TODO: remove getRules?! Create lang tests & transform [LANG].js to [LANG].json
             this.name = name;
             this.expressions = schema.expressions.values;
             this.activeExpressions = schema.expressions.names;
@@ -82,7 +69,7 @@
         }
 
         isSource() {
-            return this.name === MASK_NAMES[MASK_NAMES.length - 1];
+            return this.name === MASK_NAME_SOURCE;
         }
     }
 

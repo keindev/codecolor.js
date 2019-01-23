@@ -24,9 +24,7 @@ export interface ISchema {
     masks?: { [key: MaskName]: MaskRule[] };
 }
 
-// TODO: use that sequency in language builder script
-export const MASK_NAMES: MaskName[] = ['comment', 'template', 'string', 'constant', 'operator', 'variable', 'keyword',
-    'entity', 'meta', 'source'];
+export const MASK_NAME_SOURCE: MaskName = 'source';
 
 export class Language {
     name: LanguageName;
@@ -37,7 +35,6 @@ export class Language {
     activeExpressions: MaskName[];
 
     constructor(name: LanguageName, schema: $ReadOnly<ISchema>) {
-        // TODO: remove getRules?! Create lang tests & transform [LANG].js to [LANG].json
         this.name = name;
         this.expressions = schema.expressions.values;
         this.activeExpressions = schema.expressions.names;
