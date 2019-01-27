@@ -1,0 +1,34 @@
+{
+    "name": "json",
+    "expressions": {
+        "names": ["template", "string", "constant", "source"],
+        "values": [
+            [
+                "(\")(?:(?=(\\\\?))\\2.)*?\\1(?=:)"
+            ],
+            [
+                "(\")(?:(?=(\\\\?))\\2.)*?\\1"
+            ],
+            [
+                "(?<=[\\:[,]\\s*)\\d*[.]?\\d+(<?)"
+            ],
+            [
+                "(?<=[\\:[,]\\s*)(true|false)"
+            ]
+        ]
+    },
+    "keywords": {
+        "names": ["constant"],
+        "values": [
+            {
+                "f": [ "false" ],
+                "t": [ "true" ]
+            }
+        ]
+    },
+    "masks": {
+        "template": [
+            "variable"
+        ]
+    }
+}

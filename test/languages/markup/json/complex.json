@@ -1,0 +1,11 @@
+{
+    "testtrue": true,
+    "number1": 123,
+    "number2": 0.123,
+    "string": "string",
+    "arrays": {
+        "a1": [1, false, "string"],
+        "a2": ["", "", ""],
+        "a3": [1, 2, 3]
+    }
+}

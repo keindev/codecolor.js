@@ -49,10 +49,9 @@ describe('Check Library', () => {
             const schemaFiles: string[] = fs.readdirSync(LANGUAGES_DIR);
             const getLanguagesCount = (): number => Object.keys(library.languages).length;
 
-            schemaFiles.forEach((schemaFile: string) => {
+            schemaFiles.forEach((schemaFile: string, index: number) => {
                 const languageName: string = path.basename(schemaFile, SCHEMA_EXTENSION);
                 const schema: any = JSON.parse(fs.readFileSync(path.join(LANGUAGES_DIR, schemaFile), ENCODING));
-                const count: number = getLanguagesCount();
 
                 describe(`- ${languageName}: `, () => {
                     it('# Schema', () => {
@@ -61,7 +60,7 @@ describe('Check Library', () => {
                         library.addSchema(schema);
 
                         expect(library.activeSchema).toBe(languageName);
-                        expect(getLanguagesCount()).toBe(count + 1);
+                        expect(getLanguagesCount()).toBe(index + 1);
                     });
 
                     const markups: Markups = getMarkups(languageName);
