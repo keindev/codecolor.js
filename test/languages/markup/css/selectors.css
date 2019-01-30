@@ -1,0 +1,8 @@
+#id{}
+#id1 #id2{}
+#id.class{}
+.class{}
+div.class{}
+div{}
+div::after{}
+div.class::after{}

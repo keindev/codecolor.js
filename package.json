@@ -33,7 +33,7 @@
         "build:scss": "node-sass --output-style compressed --linefeed lf ./src/styles/themes/ -o ./dist/themes",
         "build:json": "cpx ./src/languages/**/*.json ./dist/languages",
         "build:prettier": "prettier --write ./dist/{codecolor,codecolor.legacy}.js",
-        "build": "npm-run-all clean lint:* test build:*",
+        "build": "npm-run-all clean lint:* build:*",
         "bench": "node ./bench/highlight.bench.js"
     },
     "engines": {
