@@ -18,7 +18,7 @@
         ]
     },
     "keywords": {
-        "names": ["constant"],
+        "names": ["operator"],
         "values": [
             {
                 "f": [ "false" ],

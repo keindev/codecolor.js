@@ -1,8 +1,23 @@
-#id{}
-#id1 #id2{}
-#id.class{}
-.class{}
-div.class{}
-div{}
+#id {}
+.class {}
+div {}
+
+#id.class {}
+#id .class {}
+.class #id {}
+
+div#id {}
+div.class {}
+div #id {}
+div .class {}
+
+.class #id {}
+.class > #id {}
+.class > div {}
+
 div::after{}
 div.class::after{}
+
+#id #id #id {}
+.class.class .class {}
+div div div {}

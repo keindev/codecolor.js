@@ -1,0 +1,16 @@
+$color: #abb2bf;
+$background-color: #282c34;
+
+$masks: (
+    variable: #e06c75,
+    comment: #5c6370,
+    keyword: #c678dd,
+    entity: #61afef,
+    string: #98c379,
+    template: #98c379,
+    constant: #d19a66,
+    meta: #e5c07b,
+    operator: #56b6c2,
+);
+
+@import '../core/core';

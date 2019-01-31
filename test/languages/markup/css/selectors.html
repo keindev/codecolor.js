@@ -1,8 +1,23 @@
-<pre><code class="cc-container"><span class="cc-entity">#id</span>{}
-<span class="cc-entity">#id1</span> <span class="cc-entity">#id2</span>{}
-<span class="cc-entity">#id</span><span class="cc-constant">.class</span>{}
-<span class="cc-constant">.class</span>{}
-<span class="cc-variable">div</span><span class="cc-constant">.class</span>{}
-<span class="cc-variable">div</span>{}
+<pre><code class="cc-container"><span class="cc-entity">#id</span> {}
+<span class="cc-constant">.class</span> {}
+<span class="cc-variable">div</span> {}
+
+<span class="cc-entity">#id</span><span class="cc-constant">.class</span> {}
+<span class="cc-entity">#id</span> <span class="cc-constant">.class</span> {}
+<span class="cc-constant">.class</span> <span class="cc-entity">#id</span> {}
+
+<span class="cc-variable">div</span><span class="cc-entity">#id</span> {}
+<span class="cc-variable">div</span><span class="cc-constant">.class</span> {}
+<span class="cc-variable">div</span> <span class="cc-entity">#id</span> {}
+<span class="cc-variable">div</span> <span class="cc-constant">.class</span> {}
+
+<span class="cc-constant">.class</span> <span class="cc-entity">#id</span> {}
+<span class="cc-constant">.class</span> > <span class="cc-entity">#id</span> {}
+<span class="cc-constant">.class</span> > <span class="cc-variable">div</span> {}
+
 <span class="cc-variable">div</span><span class="cc-constant">::after</span>{}
-<span class="cc-variable">div</span><span class="cc-constant">.class</span><span class="cc-constant">::after</span>{}</code></pre>
+<span class="cc-variable">div</span><span class="cc-constant">.class</span><span class="cc-constant">::after</span>{}
+
+<span class="cc-entity">#id</span> <span class="cc-entity">#id</span> <span class="cc-entity">#id</span> {}
+<span class="cc-constant">.class</span><span class="cc-constant">.class</span> <span class="cc-constant">.class</span> {}
+<span class="cc-variable">div</span> <span class="cc-variable">div</span> <span class="cc-variable">div</span> {}</code></pre>

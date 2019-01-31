@@ -13,7 +13,8 @@
         <!-- <link rel="stylesheet" href="../dist/themes/material-light.css"> -->
         <!-- <link rel="stylesheet" href="../dist/themes/neutral-dark.css"> -->
         <!-- <link rel="stylesheet" href="../dist/themes/neutral-light.css"> -->
-        <link rel="stylesheet" href="../dist/themes/material-dark.css">
+        <!-- <link rel="stylesheet" href="../dist/themes/one-dark.css"> -->
+        <link rel="stylesheet" href="../dist/themes/one-dark.css">
         <script src="../dist/codecolor.js"></script>
         <style>
             .layer {
@@ -61,12 +62,13 @@
                 let code1 = document.getElementById('code1');
                 let code2 = document.getElementById('code2');
 
-                fetch('example/source2.txt')
+                fetch('example/source3.txt')
                     .then(response => response.text())
                     .then(text => {
                         source.textContent = text;
 
                         // fetch('../dist/languages/javascript.json')
+                        // fetch('../dist/languages/json.json')
                         fetch('../dist/languages/css.json')
                             .then(response => response.json())
                             .then(jsonResponse => {
