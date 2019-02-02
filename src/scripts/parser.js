@@ -44,7 +44,8 @@ export default class Parser {
                 if (existingToken.end <= newToken.start) return compare(right, right + half(tokens.length - right + 1));
                 if (existingToken.start >= newToken.end) return compare(left, left + half(right - left));
                 if (newToken.isIncludedIn(existingToken)) return NaN;
-                if (existingToken.isIncludedIn(newToken)) return -(right - 1);
+                if (existingToken.isIncludedIn(newToken)) return right === 1 ? 0 : -(right - 1);
+                if (existingToken.isCross(newToken)) return -(right - 1);
             }
 
             return right;
@@ -57,7 +58,11 @@ export default class Parser {
                 newToken = new Token(name, match[0], match.index, ruleIndex);
 
                 if ((tokenIndex = compare(0, Math.max(half(tokens.length), 1))) >= 0) {
-                    tokens.splice(tokenIndex, 0, newToken);
+                    if (tokenIndex === 0 && Math.atan2(tokenIndex, tokenIndex) < 0) {
+                        tokens[Math.abs(tokenIndex)] = newToken;
+                    } else {
+                        tokens.splice(tokenIndex, 0, newToken);
+                    }
                 } else {
                     tokens[Math.abs(tokenIndex)] = newToken;
                 }

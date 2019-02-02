@@ -1,10 +1,14 @@
 {
     "name": "javascript",
     "expressions": {
-        "names": ["comment", "template", "string", "constant", "keyword", "operator", "source"],
+        "names": ["comment", "string", "template", "constant", "keyword", "operator", "source"],
         "values": [
             [
                 "\\/\\*[\\s\\S]*?\\*\\/|\\/\\/.*$"
+            ],
+            [
+                "([\"'])(?:(?=(\\\\?))\\2.)*?\\1",
+                "\\/[\\x00-\\x7F][^\\s]{0,}\\/[gmisu]{0,}"
             ],
             [
                 "(``)|(`.+?\\${[\\S\\s]+?}`)|(`[\\S\\s]+?`)",
@@ -13,10 +17,6 @@
                 "(?<=\\s)\\w+\\d*(?=\\:)",
                 "(?<=(clas{2}|new)\\s+)\\w+\\d*(?=\\s+{|\\()",
                 "(?<=\\.)\\w+\\d*(?!\\(|\\w)"
-            ],
-            [
-                "([\"'])(?:(?=(\\\\?))\\2.)*?\\1",
-                "\\/[\\x00-\\x7F][^\\s]{0,}\\/[gmisu]{0,}"
             ],
             [
                 "\\d*[.,]?\\d+(?:[eEXx][-]?[\\dA-F]+)?"

@@ -21,6 +21,10 @@ export default class Token {
         return this.start >= token.start && this.end <= token.end;
     }
 
+    isCross(token: Token): boolean {
+        return this.start >= token.start && this.start <= token.end && this.end >= token.end;
+    }
+
     isSource(): boolean {
         return this.name === MASK_NAME_SOURCE;
     }

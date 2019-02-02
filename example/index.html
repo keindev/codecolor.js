@@ -37,7 +37,7 @@
 
         <div class="layer">
             <div class="container">
-                <pre><code id="code1" class="css"></code></pre>
+                <pre><code id="code1" class="scss"></code></pre>
             </div>
 
             <div class="container">
@@ -62,14 +62,15 @@
                 let code1 = document.getElementById('code1');
                 let code2 = document.getElementById('code2');
 
-                fetch('example/source3.txt')
+                fetch('example/source2.txt')
                     .then(response => response.text())
                     .then(text => {
                         source.textContent = text;
 
                         // fetch('../dist/languages/javascript.json')
                         // fetch('../dist/languages/json.json')
-                        fetch('../dist/languages/css.json')
+                        // fetch('../dist/languages/css.json')
+                        fetch('../dist/languages/scss.json')
                             .then(response => response.json())
                             .then(jsonResponse => {
                                 try {

@@ -27,11 +27,12 @@
                 "(?<=:*)(url|var|rgb[a]{1,})(?=\\()"
             ],
             [
-                "(?<=\\:\\s+)[- .%\\d]*\\w{0,3}(?= |;|!)",
+                "(?<=[\\s\\(,]+)[-.%\\d]+\\w{0,3}(?= |;|!|,|\\))",
                 "(?<=\\[)[\\w-]+(?=\\]|=)",
                 "(?<=\\w|\\*|\\(|\\)|\\]|^):{1,2}[\\w-]+\\d*(?!\\;|\\w)",
-                "\\.\\w+(?= |\\.|{|\\[|\\(|:)",
-                "#(?=[A-Fa-f\\d]{6}|[A-Fa-f\\d]{3})"
+                "\\.[a-zA-Z]+[\\w-]+(?= |\\.|{|\\[|\\(|:|;)",
+                "#(?=[A-Fa-f\\d]{6}|[A-Fa-f\\d]{3})",
+                "&"
             ],
             [
                 "(?<=^| |,)[a-z1-6]+(?!-|\\w)"
@@ -42,24 +43,24 @@
         "names": ["variable"],
         "values": [
             {
-                "a": ["a", "abbr", "address", "area", "article", "aside", "audio"],
-                "b": ["b", "base", "bdi", "bdo", "blockquote", "body", "br", "button"],
-                "c": ["canvas", "caption", "cite", "code", "col", "colgroup"],
+                "a": ["a", "abbr", "acronym", "address", "area", "article", "aside", "audio"],
+                "b": ["b", "base", "big", "bdi", "bdo", "blockquote", "body", "br", "button"],
+                "c": ["canvas", "caption", "cite", "code", "col", "colgroup", "command"],
                 "d": ["data", "datalist", "dd", "del", "details", "dfn", "dialog", "div", "dl", "dt"],
                 "e": ["em", "embed"],
-                "f": ["fieldset", "figcaption", "figure", "footer", "form"],
+                "f": ["fieldset", "figcaption", "figure", "footer", "form", "frame", "frameset"],
                 "h": ["h1", "h2", "h3", "h4", "h5", "h6", "hgroup", "head", "header", "hr", "html"],
                 "i": ["i", "iframe", "img", "input", "ins"],
-                "k": ["kbd"],
+                "k": ["kbd", "keygen"],
                 "l": ["label", "legend", "li", "link"],
                 "m": ["main", "map", "mark", "meta", "meter"],
-                "n": ["nav", "noscript"],
+                "n": ["nav", "noframes", "noscript"],
                 "o": ["object", "ol", "optgroup", "option", "output"],
                 "p": ["p", "param", "picture", "pre", "progress"],
                 "q": ["q"],
                 "r": ["ruby", "rb", "rt", "rtc", "rp"],
-                "s": ["s", "samp", "script", "section", "select", "small", "source", "span", "strong", "style", "sub", "summary", "sup", "svg"],
-                "t": ["table", "tbody", "td", "template", "textarea", "tfoot", "th", "thead", "time", "title", "tr", "track"],
+                "s": ["s", "samp", "script", "section", "select", "small", "source", "span", "strike", "strong", "style", "sub", "summary", "sup", "svg"],
+                "t": ["table", "tbody", "td", "template", "textarea", "tfoot", "th", "thead", "time", "title", "tr", "tt", "track"],
                 "u": ["u", "ul"],
                 "v": ["var", "video"],
                 "w": ["wbr"]
