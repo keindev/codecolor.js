@@ -1,0 +1,11 @@
+<pre><code class="cc-container"><span class="cc-keyword">@mixin</span> <span class="cc-operator">bg-variant</span>(<span class="cc-variable">$parent</span>, <span class="cc-variable">$color</span>) {
+    <span class="cc-variable">#{$parent}</span> {
+        background-color: <span class="cc-variable">$color</span> <span class="cc-keyword">!important</span>;
+    }
+    <span class="cc-variable">a</span><span class="cc-variable">#{$parent}</span>,
+    <span class="cc-variable">button</span><span class="cc-variable">#{$parent}</span> {
+        <span class="cc-keyword">@include</span> <span class="cc-constant">hover-focus</span> {
+            background-color: <span class="cc-operator">darken</span>(<span class="cc-variable">$color</span>, <span class="cc-constant">10%</span>) <span class="cc-keyword">!important</span>;
+        }
+    }
+}</code></pre>
