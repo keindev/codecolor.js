@@ -1,7 +1,7 @@
 {
     "name": "json",
     "expressions": {
-        "names": ["template", "string", "constant", "source"],
+        "names": ["template", "string", "constant", "operator"],
         "values": [
             [
                 "(\")(?:(?=(\\\\?))\\2.)*?\\1(?=:)"
@@ -15,15 +15,6 @@
             [
                 "(?<=[\\:[,]\\s*)(true|false)"
             ]
-        ]
-    },
-    "keywords": {
-        "names": ["operator"],
-        "values": [
-            {
-                "f": [ "false" ],
-                "t": [ "true" ]
-            }
         ]
     },
     "masks": {

@@ -21,8 +21,8 @@
             this.name = name;
             this.expressions = schema.expressions.values;
             this.activeExpressions = schema.expressions.names;
-            this.keywords = schema.keywords.values;
-            this.activeKeywords = schema.keywords.names;
+            this.keywords = typeof schema.keywords === 'object' ? schema.keywords.values : [];
+            this.activeKeywords = typeof schema.keywords === 'object' ? schema.keywords.names : [];
             this.masks = schema.masks;
         }
 
