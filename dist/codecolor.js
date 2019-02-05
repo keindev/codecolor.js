@@ -18,6 +18,12 @@
     const MASK_NAME_SOURCE = 'source';
     class Language {
         constructor(name, schema) {
+            this.name = void 0;
+            this.expressions = void 0;
+            this.keywords = void 0;
+            this.masks = void 0;
+            this.activeKeywords = void 0;
+            this.activeExpressions = void 0;
             this.name = name;
             this.expressions = schema.expressions.values;
             this.activeExpressions = schema.expressions.names;
@@ -57,6 +63,11 @@
 
     class Token {
         constructor(name, value, position, ruleIndex) {
+            this.name = void 0;
+            this.value = void 0;
+            this.start = void 0;
+            this.end = void 0;
+            this.ruleIndex = void 0;
             this.name = name;
             this.value = value;
             this.start = position;
@@ -85,6 +96,10 @@
         }
 
         constructor(code, name, languages) {
+            this.code = void 0;
+            this.languages = void 0;
+            this.language = void 0;
+            this.tokens = void 0;
             this.code = code;
             this.languages = languages;
             this.language = languages[name];
@@ -191,16 +206,9 @@
 
     class Library {
         constructor() {
-            Object.defineProperty(this, 'version', {
-                enumerable: true,
-                writable: true,
-                value: version,
-            });
-            Object.defineProperty(this, 'languages', {
-                enumerable: true,
-                writable: true,
-                value: {},
-            });
+            this.version = version;
+            this.languages = {};
+            this.activeSchema = void 0;
         }
 
         highlight(code, schemaName) {

@@ -18,6 +18,12 @@
     var MASK_NAME_SOURCE = 'source';
     var Language = (function() {
         function Language(name, schema) {
+            this.name = void 0;
+            this.expressions = void 0;
+            this.keywords = void 0;
+            this.masks = void 0;
+            this.activeKeywords = void 0;
+            this.activeExpressions = void 0;
             this.name = name;
             this.expressions = schema.expressions.values;
             this.activeExpressions = schema.expressions.names;
@@ -65,6 +71,11 @@
 
     var Token = (function() {
         function Token(name, value, position, ruleIndex) {
+            this.name = void 0;
+            this.value = void 0;
+            this.start = void 0;
+            this.end = void 0;
+            this.ruleIndex = void 0;
             this.name = name;
             this.value = value;
             this.start = position;
@@ -97,6 +108,10 @@
         };
 
         function Parser(code, name, languages) {
+            this.code = void 0;
+            this.languages = void 0;
+            this.language = void 0;
+            this.tokens = void 0;
             this.code = code;
             this.languages = languages;
             this.language = languages[name];
@@ -215,16 +230,9 @@
 
     var Library = (function() {
         function Library() {
-            Object.defineProperty(this, 'version', {
-                enumerable: true,
-                writable: true,
-                value: version,
-            });
-            Object.defineProperty(this, 'languages', {
-                enumerable: true,
-                writable: true,
-                value: {},
-            });
+            this.version = version;
+            this.languages = {};
+            this.activeSchema = void 0;
         }
 
         var _proto = Library.prototype;
