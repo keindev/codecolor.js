@@ -1,8 +1,8 @@
 <pre><code class="cc-container"><span class="cc-keyword">const</span> sum <span class="cc-operator">=</span> (a, b)<span class="cc-keyword"> =></span> a <span class="cc-operator">+</span> b;
 <span class="cc-keyword">const</span> getTime <span class="cc-operator">=</span> ()<span class="cc-keyword"> =></span> {
-    <span class="cc-keyword">let</span> date <span class="cc-operator">=</span> <span class="cc-keyword">new</span> <span class="cc-constant">Date</span><span class="cc-meta">Date</span>();
+    <span class="cc-keyword">let</span> date <span class="cc-operator">=</span> <span class="cc-keyword">new</span> <span class="cc-constant">Date</span>();
     <span class="cc-keyword">let</span> hours <span class="cc-operator">=</span> date.<span class="cc-entity">getHours</span>();
     <span class="cc-keyword">let</span> minutes <span class="cc-operator">=</span> date.<span class="cc-entity">getMinutes</span>();
 
-    <span class="cc-keyword">return</span> <span class="cc-template">`<span class="cc-variable">${hours}</span>:<span class="cc-variable">${minutes}</span>`</span>;
+    <span class="cc-keyword">return</span> <span class="cc-template">`<span class="cc-source"><span class="cc-variable">${<span class="cc-source">hours</span>}</span></span>:<span class="cc-source"><span class="cc-variable">${<span class="cc-source">minutes</span>}</span></span>`</span><span class="cc-variable">${<span class="cc-source">minutes</span>}</span>`;
 };</code></pre>

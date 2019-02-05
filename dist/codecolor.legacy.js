@@ -140,9 +140,9 @@
                     if (existingToken.end <= newToken.start)
                         return compare(right, right + half(tokens.length - right + 1));
                     if (existingToken.start >= newToken.end) return compare(left, left + half(right - left));
-                    if (newToken.isIncludedIn(existingToken)) return NaN;
-                    if (existingToken.isIncludedIn(newToken)) return right === 1 ? 0 : -(right - 1);
-                    if (existingToken.isCross(newToken)) return -(right - 1);
+                    if (newToken.isIncludedIn(existingToken)) return -Infinity;
+                    if (existingToken.isIncludedIn(newToken)) return right === 1 ? Infinity : -(right - 1);
+                    if (existingToken.isCross(newToken)) return Infinity;
                 }
 
                 return right;
@@ -155,12 +155,12 @@
                     newToken = new Token(name, match[0], match.index, ruleIndex);
 
                     if ((tokenIndex = compare(0, Math.max(half(tokens.length), 1))) >= 0) {
-                        if (tokenIndex === 0 && Math.atan2(tokenIndex, tokenIndex) < 0) {
-                            tokens[Math.abs(tokenIndex)] = newToken;
-                        } else {
+                        if (Number.isFinite(tokenIndex)) {
                             tokens.splice(tokenIndex, 0, newToken);
+                        } else {
+                            tokens[0] = newToken;
                         }
-                    } else {
+                    } else if (Number.isFinite(tokenIndex)) {
                         tokens[Math.abs(tokenIndex)] = newToken;
                     }
                 }
@@ -193,7 +193,7 @@
                     while ((match = regExp.exec(token.value))) {
                         parts.push(
                             token.value.substring(position, match.index),
-                            getTag(mask[2], Parser.parse(match[0], mask[1], this.languages))
+                            getTag(mask[2] || MASK_NAME_SOURCE, Parser.parse(match[0], mask[1], this.languages))
                         );
                         position = regExp.lastIndex;
                     }

@@ -10,7 +10,7 @@ export type LanguageName = string;
 export type Expression = string;
 export type ExpressionRule = Expression[];
 export type KeywordRule = { [key: ABC]: string[] };
-export type MaskRule = [Expression, LanguageName, MaskName] | MaskName;
+export type MaskRule = [Expression, LanguageName, MaskName | void] | MaskName;
 
 export type Rule<T> = {
     names: MaskName[],
