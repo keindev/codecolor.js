@@ -4,6 +4,14 @@
     }
 }
 
-.#{$prefix}comment {
-    font-style: italic;
+.#{$prefix}emphasis {
+  font-style: italic;
+}
+
+.#{$prefix}strong {
+  font-weight: bold;
+}
+
+.#{$prefix}link {
+  text-decoration: underline;
 }

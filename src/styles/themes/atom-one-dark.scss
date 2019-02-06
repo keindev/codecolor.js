@@ -1,0 +1,21 @@
+$color: #abb2bf;
+$background-color: #282c34;
+
+$masks: (
+    comment: #5c6370,
+    template: #98c379,
+    string: #98c379,
+    constant: #d19a66,
+    storage: #c678dd,
+    attribute: #d19a66,
+    operator: #56b6c2,
+    variable: #e06c75,
+    interpolation: #be5046,
+    keyword: #c678dd,
+    symbol: #56b6c2,
+    entity: #61afef,
+    meta: #e5c07b,
+    source: $color,
+);
+
+@import '../core/core';

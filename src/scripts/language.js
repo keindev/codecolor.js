@@ -4,8 +4,8 @@ export type ABC = 'A' | 'a' | 'B' | 'b' | 'C' | 'c' | 'D' | 'd' | 'E' | 'e' | 'F
     'H' | 'h' | 'I' | 'i' | 'J' | 'j' | 'K' | 'k' | 'L' | 'l' | 'M' | 'm' | 'N' | 'n' | 'O' | 'o' | 'P' | 'p' |
     'Q' | 'q' | 'R' | 'r' | 'S' | 's' | 'T' | 't' | 'U' | 'u' | 'V' | 'v' | 'W' | 'w' | 'X' | 'x' | 'Y' | 'y' |
     'Z' | 'z';
-export type MaskName = 'comment' | 'template' | 'string' | 'constant' | 'operator' | 'variable' | 'keyword' |
-    'entity' | 'meta' | 'source';
+export type MaskName = 'comment' | 'template' | 'string' | 'constant' | 'storage' | 'attribute' | 'operator' |
+    'variable' | 'interpolation' | 'keyword' | 'symbol' | 'entity' | 'meta' | 'source';
 export type LanguageName = string;
 export type Expression = string;
 export type ExpressionRule = Expression[];

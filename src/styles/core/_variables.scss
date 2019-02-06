@@ -6,15 +6,19 @@ $background-color: #eceff4 !default;
 $masks: () !default;
 $masks: map-merge(
     (
-        variable: #04a7d8,
         comment: #14c4d4,
-        keyword: #3b53a2,
-        entity: #5d6e81,
-        string: #04a7d8,
         template: rgba(93, 110, 129, .7),
+        string: #04a7d8,
         constant: #04a7d8,
-        meta: rgba(93, 110, 129, .9),
+        storage: #04a7d8,
+        attribute: #04a7d8,
         operator: rgba(93, 110, 129, .7),
+        variable: #04a7d8,
+        interpolation: #0494bf,
+        keyword: #3b53a2,
+        symbol: #3b53a2,
+        entity: #5d6e81,
+        meta: rgba(93, 110, 129, .9),
         source: $color,
     ),
     $masks
