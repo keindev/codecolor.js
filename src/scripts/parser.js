@@ -85,8 +85,6 @@ export default class Parser {
 
             if (typeof mask === 'undefined') {
                 result = getTag(name, token.value);
-            } else if (typeof mask === 'string') {
-                result = getTag(mask, token.value);
             } else {
                 const regExp: RegExp = new RegExp(mask[0], 'gm');
                 const parts: string[] = [];

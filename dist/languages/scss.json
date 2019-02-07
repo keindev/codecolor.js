@@ -2,13 +2,15 @@
 {
     "name": "scss",
     "expressions": {
-        "names": ["comment", "string", "keyword", "entity", "variable", "operator", "constant", "source"],
+        "names": ["comment", "interpolation", "string", "keyword", "entity", "variable", "operator", "constant", "source"],
         "values": [
             [
                 "\\/\\*[\\s\\S]*?\\*\\/|\\/\\/.*$"
             ],
             [
-                "([\"'])(?:(?=(\\\\?))\\2.)*?\\1",
+                "([\"'])(?:(?=(\\\\?))\\2.)*?\\1"
+            ],
+            [
                 "(?<=url\\()[:;,=\\w\\/.\\d\\s]+(?=\\))"
             ],
             [
@@ -73,7 +75,7 @@
         ]
     },
     "masks": {
-        "string": [
+        "interpolation": [
             ["#{\\$[a-zA-Z]+[\\w-]+}", "scss"]
         ],
         "variable": [
