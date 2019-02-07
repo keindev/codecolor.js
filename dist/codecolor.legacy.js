@@ -15,6 +15,7 @@
 })(this, function() {
     'use strict';
 
+    var PREFIX = 'cc-';
     var MASK_NAME_SOURCE = 'source';
     var Language = (function() {
         function Language(name, schema) {
@@ -168,8 +169,8 @@
         };
 
         _proto.wrap = function wrap(token) {
-            var getTag = function getTag(className, text) {
-                return '<span class="cc-' + className + '">' + text + '</span>';
+            var getTag = function getTag(name, text) {
+                return '<span class="' + PREFIX + name + '">' + text + '</span>';
             };
 
             var name = token.isSource() ? this.language.getKeywordName(token.value) : token.name;
@@ -182,8 +183,13 @@
 
                 if (typeof mask === 'undefined') {
                     result = getTag(name, token.value);
+                } else if (typeof mask === 'string') {
+                    result = getTag(name + ' ' + PREFIX + mask, token.value);
                 } else {
-                    var regExp = new RegExp(mask[0], 'gm');
+                    var expression = mask[0],
+                        language = mask[1],
+                        maskName = mask[2];
+                    var regExp = new RegExp(expression, 'gm');
                     var parts = [];
                     var position = 0;
                     var match;
@@ -191,7 +197,7 @@
                     while ((match = regExp.exec(token.value))) {
                         parts.push(
                             token.value.substring(position, match.index),
-                            getTag(mask[2] || MASK_NAME_SOURCE, Parser.parse(match[0], mask[1], this.languages))
+                            getTag(maskName || MASK_NAME_SOURCE, Parser.parse(match[0], language, this.languages))
                         );
                         position = regExp.lastIndex;
                     }
@@ -207,8 +213,8 @@
         _proto.render = function render() {
             var _this2 = this;
 
-            var position = 0;
             var stack = [];
+            var position = 0;
             this.tokens.forEach(function(token) {
                 if (position < token.start) {
                     stack.push(_this2.code.substring(position, token.start));
@@ -237,7 +243,7 @@
 
         _proto.highlight = function highlight(code, schemaName) {
             return [
-                '<pre><code class="cc-container">',
+                '<pre><code class="' + PREFIX + 'container">',
                 Parser.parse(code, schemaName || this.activeSchema, this.languages),
                 '</code></pre>',
             ].join('');

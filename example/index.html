@@ -62,13 +62,13 @@
                 let code1 = document.getElementById('code1');
                 let code2 = document.getElementById('code2');
 
-                fetch('example/source2.txt')
+                fetch('example/source.txt')
                     .then(response => response.text())
                     .then(text => {
                         source.textContent = text;
 
-                        // fetch('../dist/languages/javascript.json')
-                        fetch('../dist/languages/json.json')
+                        fetch('../dist/languages/javascript.json')
+                        // fetch('../dist/languages/json.json')
                         // fetch('../dist/languages/css.json')
                         // fetch('../dist/languages/scss.json')
                         // fetch('../dist/languages/yaml.json')

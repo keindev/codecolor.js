@@ -2,7 +2,7 @@
 
 import Parser from './parser';
 import type { Languages } from './parser';
-import { Language } from './language';
+import { Language, PREFIX } from './language';
 import type { ISchema, LanguageName } from './language';
 import { version } from '../../package.json';
 
@@ -15,7 +15,7 @@ class Library {
 
     highlight(code: string, schemaName?: LanguageName): string {
         return [
-            '<pre><code class="cc-container">',
+            `<pre><code class="${PREFIX}container">`,
             Parser.parse(code, schemaName || this.activeSchema, this.languages),
             '</code></pre>',
         ].join('');

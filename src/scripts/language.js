@@ -5,12 +5,13 @@ export type ABC = 'A' | 'a' | 'B' | 'b' | 'C' | 'c' | 'D' | 'd' | 'E' | 'e' | 'F
     'Q' | 'q' | 'R' | 'r' | 'S' | 's' | 'T' | 't' | 'U' | 'u' | 'V' | 'v' | 'W' | 'w' | 'X' | 'x' | 'Y' | 'y' |
     'Z' | 'z';
 export type MaskName = 'comment' | 'template' | 'string' | 'constant' | 'storage' | 'attribute' | 'operator' |
-    'variable' | 'interpolation' | 'keyword' | 'symbol' | 'entity' | 'meta' | 'source';
+    'variable' | 'interpolation' | 'keyword' | 'symbol' | 'entity' | 'meta' | 'source' | 'emphasis' | 'strong' |
+    'link';
 export type LanguageName = string;
 export type Expression = string;
 export type ExpressionRule = Expression[];
 export type KeywordRule = { [key: ABC]: string[] };
-export type MaskRule = [Expression, LanguageName, MaskName | void];
+export type MaskRule = [Expression, LanguageName, MaskName | void] | MaskName;
 
 export type Rule<T> = {
     names: MaskName[],
@@ -24,6 +25,7 @@ export interface ISchema {
     masks?: { [key: MaskName]: MaskRule[] };
 }
 
+export const PREFIX = 'cc-';
 export const MASK_NAME_SOURCE: MaskName = 'source';
 
 export class Language {

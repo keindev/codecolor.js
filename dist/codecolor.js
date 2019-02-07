@@ -15,6 +15,7 @@
 })(this, function() {
     'use strict';
 
+    const PREFIX = 'cc-';
     const MASK_NAME_SOURCE = 'source';
     class Language {
         constructor(name, schema) {
@@ -150,7 +151,7 @@
         }
 
         wrap(token) {
-            const getTag = (className, text) => `<span class="cc-${className}">${text}</span>`;
+            const getTag = (name, text) => `<span class="${PREFIX}${name}">${text}</span>`;
 
             const name = token.isSource() ? this.language.getKeywordName(token.value) : token.name;
             let result;
@@ -162,8 +163,11 @@
 
                 if (typeof mask === 'undefined') {
                     result = getTag(name, token.value);
+                } else if (typeof mask === 'string') {
+                    result = getTag(`${name} ${PREFIX}${mask}`, token.value);
                 } else {
-                    const regExp = new RegExp(mask[0], 'gm');
+                    const [expression, language, maskName] = mask;
+                    const regExp = new RegExp(expression, 'gm');
                     const parts = [];
                     let position = 0;
                     let match;
@@ -171,7 +175,7 @@
                     while ((match = regExp.exec(token.value))) {
                         parts.push(
                             token.value.substring(position, match.index),
-                            getTag(mask[2] || MASK_NAME_SOURCE, Parser.parse(match[0], mask[1], this.languages))
+                            getTag(maskName || MASK_NAME_SOURCE, Parser.parse(match[0], language, this.languages))
                         );
                         position = regExp.lastIndex;
                     }
@@ -185,8 +189,8 @@
         }
 
         render() {
-            let position = 0;
             const stack = [];
+            let position = 0;
             this.tokens.forEach(token => {
                 if (position < token.start) {
                     stack.push(this.code.substring(position, token.start));
@@ -211,7 +215,7 @@
 
         highlight(code, schemaName) {
             return [
-                '<pre><code class="cc-container">',
+                `<pre><code class="${PREFIX}container">`,
                 Parser.parse(code, schemaName || this.activeSchema, this.languages),
                 '</code></pre>',
             ].join('');

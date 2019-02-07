@@ -5,7 +5,7 @@ import type {
     Language, LanguageName,
     MaskName, MaskRule,
 } from './language';
-import { MASK_NAME_SOURCE } from './language';
+import { PREFIX, MASK_NAME_SOURCE } from './language';
 
 export type Languages = { [key: LanguageName]: Language };
 
@@ -72,7 +72,7 @@ export default class Parser {
     }
 
     wrap(token: Token): string {
-        const getTag = (className: string, text: string): string => `<span class="cc-${className}">${text}</span>`;
+        const getTag = (name: string, text: string): string => `<span class="${PREFIX}${name}">${text}</span>`;
         const name: MaskName | void = token.isSource()
             ? this.language.getKeywordName(token.value)
             : token.name;
@@ -85,20 +85,22 @@ export default class Parser {
 
             if (typeof mask === 'undefined') {
                 result = getTag(name, token.value);
+            } else if (typeof mask === 'string') {
+                result = getTag(`${name} ${PREFIX}${mask}`, token.value);
             } else {
-                const regExp: RegExp = new RegExp(mask[0], 'gm');
+                const [expression: Expression, language: LanguageName, maskName: MaskName] = mask;
+                const regExp: RegExp = new RegExp(expression, 'gm');
                 const parts: string[] = [];
                 let position: number = 0;
                 let match: RegExp$matchResult | null;
 
                 while ((match = regExp.exec(token.value))) {
                     parts.push(token.value.substring(position, match.index),
-                        getTag(mask[2] || MASK_NAME_SOURCE, Parser.parse(match[0], mask[1], this.languages)));
+                        getTag(maskName || MASK_NAME_SOURCE, Parser.parse(match[0], language, this.languages)));
                     position = regExp.lastIndex;
                 }
 
                 parts.push(token.value.substring(position, token.value.length));
-
                 result = getTag(name, parts.join(''));
             }
         }
@@ -107,8 +109,8 @@ export default class Parser {
     }
 
     render(): string {
-        let position: number = 0;
         const stack: string[] = [];
+        let position: number = 0;
 
         this.tokens.forEach((token: Token) => {
             if (position < token.start) {
