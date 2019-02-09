@@ -91,9 +91,15 @@
 
     class Parser {
         static parse(code, name, languages) {
-            const parser = new Parser(code, name, languages);
-            parser.analize();
-            return parser.render();
+            let result = code;
+
+            if (typeof languages[name] !== 'undefined') {
+                const parser = new Parser(result, name, languages);
+                parser.analize();
+                result = parser.render();
+            }
+
+            return result;
         }
 
         constructor(code, name, languages) {

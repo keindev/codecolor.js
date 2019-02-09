@@ -15,12 +15,17 @@ export default class Parser {
     language: Language;
     tokens: Token[];
 
-    static parse(code: string, name: LanguageName, languages: Languages) {
-        const parser = new Parser(code, name, languages);
+    static parse(code: string, name: LanguageName, languages: Languages): string {
+        let result: string = code;
 
-        parser.analize();
+        if (typeof languages[name] !== 'undefined') {
+            const parser = new Parser(result, name, languages);
 
-        return parser.render();
+            parser.analize();
+            result = parser.render();
+        }
+
+        return result;
     }
 
     constructor(code: string, name: LanguageName, languages: Languages) {

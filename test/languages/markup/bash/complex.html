@@ -1,0 +1,7 @@
+<pre><code class="cc-container"><span class="cc-comment">#!/usr/bin/env bash</span>
+i<span class="cc-operator">=</span><span class="cc-constant">0</span>
+<span class="cc-keyword">until</span> [[<span class="cc-variable">$i</span> <span class="cc-constant">-eq</span> <span class="cc-constant">10</span>]]
+<span class="cc-keyword">do</span>
+  <span class="cc-operator">echo</span> <span class="cc-string">"<span class="cc-source"><span class="cc-variable">$i</span></span>"</span>
+  i<span class="cc-operator">=</span>$((<span class="cc-variable">$i</span><span class="cc-operator">+</span><span class="cc-constant">1</span>))
+<span class="cc-keyword">done</span></code></pre>

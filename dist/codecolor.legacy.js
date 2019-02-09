@@ -103,9 +103,15 @@
 
     var Parser = (function() {
         Parser.parse = function parse(code, name, languages) {
-            var parser = new Parser(code, name, languages);
-            parser.analize();
-            return parser.render();
+            var result = code;
+
+            if (typeof languages[name] !== 'undefined') {
+                var parser = new Parser(result, name, languages);
+                parser.analize();
+                result = parser.render();
+            }
+
+            return result;
         };
 
         function Parser(code, name, languages) {
