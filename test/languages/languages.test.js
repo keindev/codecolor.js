@@ -6,7 +6,7 @@ import library from '../../src/scripts/library';
 
 const LANGUAGES_DIR: string = './src/languages';
 const MARKUP_DIR: string = './test/languages/markup';
-const MARKUP_EXTENSION: string = '.html';
+const EXPECT_MARKUP_EXTENSION: string = '.expect';
 const SCHEMA_EXTENSION: string = '.json';
 const ENCODING: string = 'utf8';
 
@@ -27,7 +27,7 @@ function getMarkups(languageName: string): Markups {
         text = String(fs.readFileSync(path.join(dirPath, file), ENCODING)).replace(/\n$/, '');
         markups[basename] = markups[basename] || {};
 
-        if (extension === MARKUP_EXTENSION) {
+        if (extension === EXPECT_MARKUP_EXTENSION) {
             markups[basename].html = text;
         } else {
             markups[basename].code = text;
