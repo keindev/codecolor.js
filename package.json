@@ -11,10 +11,10 @@
     "homepage": "https://codecolorjs.pw/",
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/kein-project/codecolor.js.git"
+        "url": "git+https://github.com/keindev/codecolor.js.git"
     },
     "bugs": {
-        "url": "https://github.com/kein-project/codecolor.js/issues"
+        "url": "https://github.com/keindev/codecolor.js/issues"
     },
     "main": "./dist/codecolor.min.js",
     "scripts": {
