@@ -17,7 +17,7 @@
     "module": "dist/codecolor.js",
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/keindev/codecolor.js.git"
+        "url": "https://github.com/keindev/codecolor.js.git"
     },
     "bugs": {
         "url": "https://github.com/keindev/codecolor.js/issues"
