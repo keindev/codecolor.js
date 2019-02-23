@@ -1,0 +1,34 @@
+---
+root: true
+parser: babel-eslint
+plugins:
+- flowtype
+- jest
+env:
+  jest/globals: true
+extends:
+- airbnb-base
+- plugin:flowtype/recommended
+- plugin:jest/recommended
+rules:
+  max-len:
+  - error
+  - code: 120
+  indent:
+  - error
+  - 4
+  lines-between-class-members: 0
+  no-bitwise: 0
+  no-plusplus: 0
+  no-return-assign:
+  - error
+  - except-parens
+  no-cond-assign:
+  - error
+  - except-parens
+  func-names:
+  - error
+  - as-needed
+  import/no-extraneous-dependencies:
+  - error
+  - devDependencies: true
