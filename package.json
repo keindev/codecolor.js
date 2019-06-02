@@ -57,7 +57,7 @@
         "eslint-plugin-flowtype": "^2.50.0",
         "eslint-plugin-import": "^2.14.0",
         "eslint-plugin-jest": "^22.1.2",
-        "flow-bin": "^0.77.0",
+        "flow-bin": "^0.100.0",
         "highlight.js": "^9.13.1",
         "jest": "^23.6.0",
         "jsonlint": "^1.6.3",
