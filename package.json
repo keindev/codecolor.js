@@ -58,7 +58,7 @@
         "eslint-config-airbnb-base": "^13.2.0",
         "eslint-plugin-flowtype": "^3.10.3",
         "eslint-plugin-import": "^2.18.2",
-        "eslint-plugin-jest": "^22.13.6",
+        "eslint-plugin-jest": "^22.13.7",
         "flow-bin": "^0.103.0",
         "highlight.js": "^9.15.8",
         "jest": "^24.8.0",
