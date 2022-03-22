@@ -1,4 +1,4 @@
 module.exports = {
-    name: 'json',
-    filaPath: 'dist/languages/javascript.json',
+  name: 'json',
+  filaPath: 'dist/languages/javascript.json',
 };

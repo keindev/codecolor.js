@@ -37,7 +37,8 @@
     "prepare:vscode": "node --experimental-specifier-resolution=node node_modules/.bin/vscode-shared-config",
     "release": "npm-run-all prepare lint test build generate",
     "test": "npm-run-all test:*",
-    "test:jest": "node --experimental-vm-modules node_modules/.bin/jest"
+    "test:jest": "node --experimental-vm-modules node_modules/.bin/jest",
+    "bench": "node bench/highlight.bench.js"
   },
   "devDependencies": {
     "@tagproject/docs-shared-config": "^1.0.2",
