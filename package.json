@@ -1,7 +1,7 @@
 {
   "name": "codecolor.js",
   "version": "1.0.0",
-  "description": "CodeColor is just a fast syntax highlighter",
+  "description": "codecolor.js is just a fast & small syntax highlighter",
   "license": "MIT",
   "homepage": "https://github.com/keindev/codecolor.js#readme",
   "author": {
@@ -10,18 +10,25 @@
   },
   "keywords": [
     "highlight",
-    "syntax"
+    "syntax",
+    "typescript"
   ],
   "bugs": "https://github.com/keindev/codecolor.js/issues",
   "types": "./lib/index.d.ts",
   "type": "module",
-  "exports": "./lib/index.js",
+  "exports": {
+    ".": "./lib/index.js",
+    "./languages/*": "./lib/languages/*.js",
+    "./themes/*": "./themes/*.css"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/keindev/codecolor.js.git"
   },
   "scripts": {
+    "bench": "node bench/highlight.bench.js",
     "build": "npm-run-all build:*",
+    "build:scss": "sass src/styles/themes:lib/themes",
     "build:ts": "rimraf lib && tsc --extendedDiagnostics",
     "generate": "npm-run-all generate:*",
     "generate:changelog": "node --experimental-specifier-resolution=node node_modules/.bin/changelog generate --bump",
@@ -37,34 +44,43 @@
     "prepare:vscode": "node --experimental-specifier-resolution=node node_modules/.bin/vscode-shared-config",
     "release": "npm-run-all prepare lint test build generate",
     "test": "npm-run-all test:*",
-    "test:jest": "node --experimental-vm-modules node_modules/.bin/jest",
-    "bench": "node bench/highlight.bench.js"
+    "test:benchmark": "node --experimental-specifier-resolution=node --loader ts-node/esm src/__benchmark__/benchmark.ts",
+    "test:jest": "node --experimental-vm-modules node_modules/.bin/jest"
   },
   "devDependencies": {
     "@tagproject/docs-shared-config": "^1.0.2",
     "@tagproject/ts-package-shared-config": "^7.3.0",
     "@tagproject/vscode-shared-config": "^1.2.3",
+    "@types/benchmark": "^2.1.1",
     "@types/jest": "^27.4.1",
-    "@types/node": "^17.0.22",
-    "@typescript-eslint/eslint-plugin": "^5.16.0",
-    "@typescript-eslint/parser": "^5.16.0",
+    "@types/node": "^17.0.23",
+    "@types/prismjs": "^1.26.0",
+    "@typescript-eslint/eslint-plugin": "^5.17.0",
+    "@typescript-eslint/parser": "^5.17.0",
+    "benchmark": "^2.1.4",
     "changelog-guru": "^4.0.4",
-    "cspell": "^5.19.2",
-    "eslint": "^8.11.0",
+    "colors": "^1.4.0",
+    "cspell": "^5.19.3",
+    "eslint": "^8.12.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-import": "^2.25.4",
-    "eslint-plugin-jest": "^26.1.2",
+    "eslint-plugin-jest": "^26.1.3",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-optimize-regex": "^1.2.1",
     "eslint-plugin-promise": "^6.0.0",
     "figma-portal": "^1.0.0",
     "ghinfo": "^3.0.4",
+    "highlight.js": "^11.5.0",
     "husky": "^7.0.4",
     "jest": "^27.5.1",
+    "microtime": "^3.0.0",
     "npm-run-all": "^4.1.5",
-    "prettier": "^2.6.0",
+    "prettier": "^2.6.1",
+    "prismjs": "^1.27.0",
     "rimraf": "^3.0.2",
-    "ts-jest": "^27.1.3",
-    "typescript": "^4.6.2"
+    "sass": "^1.49.10",
+    "ts-jest": "^27.1.4",
+    "ts-node": "^10.7.0",
+    "typescript": "^4.6.3"
   }
 }
