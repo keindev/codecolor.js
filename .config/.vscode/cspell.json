@@ -1,3 +1,4 @@
 {
-  "words": ["codecolor", "prismjs", "microtime"]
+  "words": ["codecolor", "prismjs", "microtime", "PCRE"],
+  "ignorePaths": ["src/languages"]
 }

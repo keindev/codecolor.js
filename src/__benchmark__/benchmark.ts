@@ -37,7 +37,7 @@ console.log(colors.underline('Test perf:'));
   codecolor.addSchema(schema);
 
   console.log(`- ${colors.bold(schema.name)}:`);
-  suite.add(colors.green('CodeColor.js'), () => codecolor.highlight(text, schema.name));
+  suite.add(colors.green('codecolor.js'), () => codecolor.highlight(text, schema.name));
   suite.add(colors.green('Prism.js'), () => prism.highlight(text, prism.languages[schema.name]!, schema.name));
   suite.add(colors.green('highlight.js'), () => hljs.highlight(text, { language: schema.name, ignoreIllegals: true }));
 
