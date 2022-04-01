@@ -1,7 +1,7 @@
-.#{$prefix}container {
-    display: block;
-    background-color: $background-color;
-    padding: .5em;
-    color: $color;
-    overflow-x: auto;
+.#{$prefix}-container {
+  display: block;
+  background-color: var(--#{$prefix}-background-color, $background-color);
+  padding: 0.5em;
+  color: var(--#{$prefix}-color, $color);
+  overflow-x: auto;
 }

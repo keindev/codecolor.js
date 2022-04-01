@@ -2,20 +2,20 @@ $color: #607d8b;
 $background-color: #fafafa;
 
 $masks: (
-    comment: #ccd7da,
-    template: #91b859,
-    string: #91b859,
-    constant: #91b859,
-    storage: #7c4dff,
-    attribute: #7c4dff,
-    operator: #7c4dff,
-    variable: #80cbc4,
-    interpolation: #80cbc4,
-    keyword: #7c4dff,
-    symbol: #91b859,
-    entity: #6182b8,
-    meta: #607d8b,
-    source: $color,
+  comment: #ccd7da,
+  template: #91b859,
+  string: #91b859,
+  constant: #91b859,
+  storage: #7c4dff,
+  attribute: #7c4dff,
+  operator: #7c4dff,
+  variable: #80cbc4,
+  interpolation: #80cbc4,
+  keyword: #7c4dff,
+  symbol: #91b859,
+  entity: #6182b8,
+  meta: #607d8b,
+  source: $color,
 );
 
 @import '../core/core';

@@ -1,17 +1,17 @@
 @each $name, $value in $masks {
-    .#{$prefix}#{$name} {
-        color: $value;
-    }
+  .#{$prefix}-#{$name} {
+    color: var(--#{$prefix}-#{$name}-color, $value);
+  }
 }
 
-.#{$prefix}emphasis {
+.#{$prefix}-emphasis {
   font-style: italic;
 }
 
-.#{$prefix}strong {
+.#{$prefix}-strong {
   font-weight: bold;
 }
 
-.#{$prefix}link {
+.#{$prefix}-link {
   text-decoration: underline;
 }
