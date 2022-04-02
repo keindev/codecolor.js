@@ -1,5 +1,6 @@
-import Language, { LanguageName, MASK_NAME_SOURCE, MaskName, MaskRule, PREFIX } from './Language';
+import Language, { MASK_NAME_SOURCE, PREFIX } from './Language';
 import Token from './Token';
+import { IExpression, IPattern } from './types';
 
 const half = (value: number): number => ~~(value / 2);
 const getTag = (name: string, text: string): string => `<span class="${PREFIX}${name}">${text}</span>`;
@@ -24,18 +25,15 @@ const compare = (left: number, right: number, newToken: Token, tokens: Token[]):
 
 export const parse = (code: string, language: Language): Token[] => {
   let match: RegExpExecArray | null;
-  let regExp: RegExp;
   let newToken: Token;
   let tokenIndex = NaN;
   const tokens: Token[] = [];
 
-  language.eachExp((name: MaskName, expression: string, ruleIndex: number) => {
-    regExp = new RegExp(expression, 'gm');
-
-    while ((match = regExp.exec(code))) {
+  language.eachExp((pattern: IPattern, [expression, mask]: IExpression) => {
+    while ((match = expression.exec(code))) {
       // TODO: remove !
       // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-      newToken = new Token(name, match[0]!, match.index, ruleIndex);
+      newToken = new Token(pattern, match[0]!, match.index, mask);
 
       if ((tokenIndex = compare(0, Math.max(half(tokens.length), 1), newToken, tokens)) >= 0) {
         if (Number.isFinite(tokenIndex)) tokens.splice(tokenIndex, 0, newToken);
@@ -48,21 +46,21 @@ export const parse = (code: string, language: Language): Token[] => {
 };
 
 // eslint-disable-next-line max-lines-per-function
-const wrap = (token: Token, language: Language, languages: { [key: LanguageName]: Language }): string => {
-  const name: MaskName | void = token.isSource() ? language.getKeywordName(token.value) : token.name;
+const wrap = (token: Token, language: Language, languages: { [key: string]: Language }): string => {
+  const name = token.isSource() ? language.keywords[token.value] : token.pattern;
   let result: string;
 
   if (typeof name === 'undefined') {
     result = token.value;
   } else {
-    const mask: MaskRule | void = language.getMask(name, token.ruleIndex);
+    const { mask } = token;
 
     if (typeof mask === 'undefined') {
       result = getTag(name, token.value);
     } else if (typeof mask === 'string') {
       result = getTag(`${name} ${PREFIX}${mask}`, token.value);
     } else {
-      const [expression, langName] = mask;
+      const [expression, langName = language.name] = mask;
       const regExp = new RegExp(expression, 'gm');
       const parts: string[] = [];
       let match: RegExpExecArray | null;
@@ -96,7 +94,7 @@ export const render = (
   code: string,
   tokens: Token[],
   language: Language,
-  languages: { [key: LanguageName]: Language }
+  languages: { [key: string]: Language }
 ): string => {
   const stack: string[] = [];
   let position = 0;

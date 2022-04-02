@@ -1,8 +1,8 @@
-import Language, { ISchema, LanguageName, PREFIX } from './Language';
+import Language, { ISchema, PREFIX } from './Language';
 import { parse, render } from './utils';
 
 class Library {
-  languages: { [key: LanguageName]: Language } = {};
+  languages: { [key: string]: Language } = {};
 
   addSchema(schema: ISchema): string {
     this.languages[schema.name] = new Language(schema);
@@ -10,7 +10,7 @@ class Library {
     return schema.name;
   }
 
-  highlight(code: string, schema: ISchema | LanguageName): string {
+  highlight(code: string, schema: ISchema | string): string {
     const name = typeof schema === 'object' ? this.addSchema(schema) : schema;
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     const language = this.languages[name]!;

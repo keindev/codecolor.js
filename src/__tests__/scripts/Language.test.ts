@@ -1,47 +1,29 @@
-import Language, { Expression, MaskName } from '../../scripts/Language';
-
-const TEST_LANGUAGE_NAME = 'test';
-const TEST_EXPRESSION_NAME: MaskName = 'template';
-const TEST_EXPRESSION_VALUE: Expression = 'regExp';
-const TEST_KEYWORD_NAME: MaskName = 'meta';
-const TEST_KEYWORD_VALUE = 'test';
-const TEST_RULE_INDEX = 0;
-
-const schema = {
-  name: TEST_LANGUAGE_NAME,
-  expressions: {
-    names: [TEST_EXPRESSION_NAME],
-    values: [[TEST_EXPRESSION_VALUE]],
-  },
-  keywords: {
-    names: [TEST_KEYWORD_NAME],
-    values: [
-      {
-        t: [TEST_KEYWORD_VALUE],
-      },
-    ],
-  },
-};
-const language = new Language(schema);
+import Language from '../../scripts/Language';
+import { IExpression, IPattern } from '../../scripts/types';
 
 describe('Language', () => {
+  const TEST_LANGUAGE_NAME = 'test';
+  const TEST_EXPRESSION_NAME: IPattern = 'template';
+  const TEST_EXPRESSION_VALUE = /_/gm;
+  const TEST_KEYWORD_NAME: IPattern = 'meta';
+  const TEST_KEYWORD_VALUE = 'test';
+  const expressions: [IPattern, IExpression[]][] = [[TEST_EXPRESSION_NAME, [[TEST_EXPRESSION_VALUE]]]];
+  const keywords: [IPattern, string[]][] = [[TEST_KEYWORD_NAME, [TEST_KEYWORD_VALUE]]];
+  const language = new Language({ name: TEST_LANGUAGE_NAME, expressions, keywords });
+
   it('creating', () => {
-    expect(language.expressions.length).toBe(schema.expressions.values.length);
-    expect(language.activeExpressions.length).toEqual(schema.expressions.names.length);
-    expect(language.keywords.length).toBe(schema.keywords.values.length);
-    expect(language.activeKeywords.length).toEqual(schema.keywords.names.length);
-    expect(language.masks).toBeUndefined();
+    expect(language.expressions.size).toBe(expressions.length);
+    expect(Object.keys(language.keywords).length).toBe(keywords.reduce((acc, [, values]) => acc + values.length, 0));
   });
 
   it('each expressions', () => {
-    language.eachExp((name, expression, ruleIndex) => {
+    language.eachExp((name, expression) => {
       expect(name).toBe(TEST_EXPRESSION_NAME);
-      expect(expression).toBe(TEST_EXPRESSION_VALUE);
-      expect(ruleIndex).toBe(TEST_RULE_INDEX);
+      expect(expression).toEqual([TEST_EXPRESSION_VALUE]);
     });
   });
 
   it('find keyword by name', () => {
-    expect(language.getKeywordName(TEST_KEYWORD_VALUE)).toBe(TEST_KEYWORD_NAME);
+    expect(language.keywords[TEST_KEYWORD_VALUE]).toBe(TEST_KEYWORD_NAME);
   });
 });

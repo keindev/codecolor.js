@@ -25,6 +25,9 @@
     "type": "git",
     "url": "https://github.com/keindev/codecolor.js.git"
   },
+  "engines": {
+    "node": "^14.13.1 || >=16.0.0"
+  },
   "scripts": {
     "bench": "node bench/highlight.bench.js",
     "build": "npm-run-all build:*",

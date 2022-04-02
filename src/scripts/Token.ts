@@ -1,18 +1,19 @@
-import { MASK_NAME_SOURCE, MaskName } from './Language';
+import { MASK_NAME_SOURCE } from './Language';
+import { IMask, IPattern } from './types';
 
 export default class Token {
   end: number;
-  name: MaskName;
-  ruleIndex: number;
+  mask?: IMask;
+  pattern: IPattern;
   start: number;
   value: string;
 
-  constructor(name: MaskName, value: string, position: number, ruleIndex: number) {
-    this.name = name;
+  constructor(pattern: IPattern, value: string, position: number, mask?: IMask) {
+    this.pattern = pattern;
     this.value = value;
     this.start = position;
     this.end = position + value.length;
-    this.ruleIndex = ruleIndex;
+    this.mask = mask;
   }
 
   isCross(token: Token): boolean {
@@ -24,6 +25,6 @@ export default class Token {
   }
 
   isSource(): boolean {
-    return this.name === MASK_NAME_SOURCE;
+    return this.pattern === MASK_NAME_SOURCE;
   }
 }
