@@ -1,6 +1,6 @@
-import { ISchema } from '../scripts/Language';
+import { ISyntax } from '../types';
 
-const yaml: ISchema = {
+const yaml: ISyntax = {
   name: 'yaml',
   expressions: [
     ['comment', [[/#([\t ])*.*$/gm]]],
@@ -9,8 +9,8 @@ const yaml: ISchema = {
     [
       'constant',
       [
-        // eslint-disable-next-line max-len
         [
+          // eslint-disable-next-line max-len
           /(?<=[,:[{-]\s*(?:!\S+)?[\t ]*)(?:\d{4}-\d\d?-\d\d?(?:[Tt]|[\t ]+)\d\d?:\d{2}:\d{2}(?:\.\d*)?[\t ]*(?:Z|[+-]\d\d?(?::\d{2})?)?|\d{4}-\d{2}-\d{2}|\d\d?:\d{2}(?::\d{2}(?:\.\d*)?)?)(?=[\t ]*(?:$|,|]|}))/gm,
         ],
         [/(?<=[\t ]*)\d+/gm],

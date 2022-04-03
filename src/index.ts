@@ -1,2 +1,1 @@
-export { default } from './scripts/Library';
-export * from './scripts/Language';
+export { default } from './CodeColor';

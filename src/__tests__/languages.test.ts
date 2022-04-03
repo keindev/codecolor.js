@@ -2,14 +2,13 @@ import fs from 'fs';
 import path, { dirname } from 'path';
 import { fileURLToPath } from 'url';
 
-import bash from '../../languages/bash';
-import css from '../../languages/css';
-import javascript from '../../languages/javascript';
-import json from '../../languages/json';
-import scss from '../../languages/scss';
-import yaml from '../../languages/yaml';
-import { ISchema } from '../../scripts/Language';
-import Library from '../../scripts/Library';
+import CodeColor from '../CodeColor';
+import bash from '../languages/bash';
+import css from '../languages/css';
+import javascript from '../languages/javascript';
+import json from '../languages/json';
+import scss from '../languages/scss';
+import yaml from '../languages/yaml';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const MARKUP_DIR = './markup';
@@ -49,19 +48,17 @@ function getMarkups(languageName: string): Markups {
 }
 
 describe('Check Library', () => {
-  const library = new Library();
+  const library = new CodeColor();
 
   describe('Languages:', () => {
-    const getLanguagesCount = (): number => Object.keys(library.languages).length;
-
-    [bash, css, javascript, json, yaml, scss].forEach((schema: ISchema, index: number) => {
+    [bash, css, javascript, json, yaml, scss].forEach((schema, index) => {
       describe(`- ${schema.name}: `, () => {
         it('# Schema', () => {
           expect(schema.name).toBe(schema.name);
 
-          library.addSchema(schema);
+          library.register([schema]);
 
-          expect(getLanguagesCount()).toBe(index + 1);
+          expect(library.languages.size).toBe(index + 1);
         });
 
         const markups: Markups = getMarkups(schema.name);

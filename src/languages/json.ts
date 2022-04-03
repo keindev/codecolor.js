@@ -1,6 +1,6 @@
-import { ISchema } from '../scripts/Language';
+import { ISyntax } from '../types';
 
-const json: ISchema = {
+const json: ISyntax = {
   name: 'json',
   expressions: [
     ['variable', [[/(")(?:(?=(\\?))\2.)*?\1(?=:)/gm]]],

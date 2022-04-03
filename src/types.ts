@@ -71,9 +71,35 @@ export type IPattern =
   | 'strong'
   | 'link';
 
-export type IMask = IPattern | [RegExp, string] | [RegExp];
+export type ILanguageName = 'bash' | 'css' | 'javascript' | 'json' | 'scss' | 'yaml';
+export type IMask = IPattern | [RegExp, ILanguageName] | [RegExp];
 export type IExpression = [RegExp, IMask] | [RegExp];
+export type IKeywordsMap = { [key: string]: IPattern };
 
-export interface IKeywordsMap {
-  [key: string]: IPattern;
+export interface ILanguage {
+  expressions: Map<IPattern, IExpression[]>;
+  keywords: IKeywordsMap;
+  name: ILanguageName;
+}
+
+export interface ISyntax {
+  expressions: [IPattern, IExpression[]][];
+  keywords?: [IPattern, string[]][];
+  name: ILanguageName;
+}
+
+export interface IToken {
+  end: number;
+  mask?: IMask;
+  pattern: IPattern;
+  start: number;
+  value: string;
+}
+
+export interface IRenderOptions {
+  keywords: IKeywordsMap;
+  language: ILanguageName;
+  mask?: IMask;
+  pattern: IPattern;
+  value: string;
 }

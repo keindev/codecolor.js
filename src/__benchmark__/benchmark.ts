@@ -15,31 +15,33 @@ import { fileURLToPath } from 'url';
 import css from '../../src/languages/css';
 import javascript from '../../src/languages/javascript';
 import json from '../../src/languages/json';
-import Library, { ISchema } from '../index';
+import Library from '../index';
+import { ILanguageName, ISyntax } from '../types';
 
 // eslint-disable-next-line no-underscore-dangle
 const __dirname = dirname(fileURLToPath(import.meta.url));
+const codecolor = new Library();
 
 console.log(colors.underline('Test perf:'));
+
 (
   [
-    [css, '../../node_modules/prismjs/themes/prism-coy.css', hljsCSS],
-    [javascript, '../../node_modules/highlight.js/lib/common.js', hljsJavaScript],
-    [json, '../../package.json', hljsJSON],
-  ] as [ISchema, string, LanguageFn][]
-).forEach(([schema, filePath, hljsFn]) => {
+    ['css', '../../node_modules/prismjs/themes/prism-coy.css', [hljsCSS, css]],
+    ['javascript', '../../node_modules/highlight.js/lib/common.js', [hljsJavaScript, javascript]],
+    ['json', '../../package.json', [hljsJSON, json]],
+  ] as [ILanguageName, string, [LanguageFn, ISyntax]][]
+).forEach(([language, filePath, [hljsFn, schema]]) => {
   const text = String(fs.readFileSync(path.resolve(__dirname, filePath)));
   const suite = new Benchmark.Suite();
-  const codecolor = new Library();
 
-  prismLoadLanguage([schema.name]);
-  hljs.registerLanguage(schema.name, hljsFn);
-  codecolor.addSchema(schema);
+  prismLoadLanguage([language]);
+  hljs.registerLanguage(language, hljsFn);
+  codecolor.register([schema]);
 
-  console.log(`- ${colors.bold(schema.name)}:`);
-  suite.add(colors.green('codecolor.js'), () => codecolor.highlight(text, schema.name));
-  suite.add(colors.green('Prism.js'), () => prism.highlight(text, prism.languages[schema.name]!, schema.name));
-  suite.add(colors.green('highlight.js'), () => hljs.highlight(text, { language: schema.name, ignoreIllegals: true }));
+  console.log(`- ${colors.bold(language)}:`);
+  suite.add(colors.green('codecolor.js'), () => codecolor.highlight(text, language));
+  suite.add(colors.green('Prism.js'), () => prism.highlight(text, prism.languages[language]!, language));
+  suite.add(colors.green('highlight.js'), () => hljs.highlight(text, { language, ignoreIllegals: true }));
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   suite.on('cycle', (event: any) => console.log(String(event.target)));

@@ -1,6 +1,6 @@
-import { ISchema } from '../scripts/Language';
+import { ISyntax } from '../types';
 
-const scss: ISchema = {
+const scss: ISyntax = {
   name: 'scss',
   expressions: [
     ['comment', [[/\/\*[\S\s]*?\*\/|\/\/.*$/gm]]],

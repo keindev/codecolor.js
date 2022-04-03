@@ -1,6 +1,6 @@
-import { ISchema } from '../scripts/Language';
+import { ISyntax } from '../types';
 
-const javascript: ISchema = {
+const javascript: ISyntax = {
   name: 'javascript',
   expressions: [
     ['comment', [[/\/\*[\S\s]*?\*\/|\/\/.*$/gm, 'emphasis']]],

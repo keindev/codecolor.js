@@ -1,6 +1,6 @@
-import { ISchema } from '../scripts/Language';
+import { ISyntax } from '../types';
 
-const bash: ISchema = {
+const bash: ISyntax = {
   name: 'bash',
   expressions: [
     ['comment', [[/^#.+/gm]]],
