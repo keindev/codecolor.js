@@ -15,12 +15,12 @@ import { fileURLToPath } from 'url';
 import css from '../../src/languages/css';
 import javascript from '../../src/languages/javascript';
 import json from '../../src/languages/json';
-import Library from '../index';
+import CodeColor from '../CodeColor';
 import { ILanguageName, ISyntax } from '../types';
 
 // eslint-disable-next-line no-underscore-dangle
 const __dirname = dirname(fileURLToPath(import.meta.url));
-const codecolor = new Library();
+const codecolor = new CodeColor();
 
 console.log(colors.underline('Test perf:'));
 

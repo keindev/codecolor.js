@@ -1,7 +1,7 @@
 {
   "name": "codecolor.js",
   "version": "1.0.0",
-  "description": "codecolor.js is just a fast & small syntax highlighter",
+  "description": "fast, small and simple syntax highlighter library",
   "license": "MIT",
   "homepage": "https://github.com/keindev/codecolor.js#readme",
   "author": {
