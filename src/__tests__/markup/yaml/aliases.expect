@@ -1,0 +1,9 @@
+<pre><code class="cc-container"><span class="cc-variable">aliases</span>: <span class="cc-comment">#comment</span>
+    - <span class="cc-entity">&myAlias1</span>
+        <span class="cc-variable">datakey</span>: dataval <span class="cc-constant">1</span>
+        <span class="cc-variable">moredata</span>: morevals <span class="cc-constant">1</span>
+    - <span class="cc-entity">&myAlias2</span>
+        <span class="cc-variable">datakey</span>: dataval <span class="cc-constant">2</span>
+        <span class="cc-variable">moredata</span>: morevals <span class="cc-constant">2</span>
+<span class="cc-variable">config</span>:
+    - <span class="cc-entity">*myAlias1</span></code></pre>

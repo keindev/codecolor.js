@@ -1,0 +1,25 @@
+$prefix: 'cc' !default;
+
+$color: rgba(93, 110, 129, 0.9) !default;
+$background-color: #eceff4 !default;
+
+$masks: () !default;
+$masks: map-merge(
+  (
+    comment: #14c4d4,
+    template: rgba(93, 110, 129, 0.7),
+    string: #04a7d8,
+    constant: #04a7d8,
+    storage: #04a7d8,
+    attribute: #04a7d8,
+    operator: rgba(93, 110, 129, 0.7),
+    variable: #04a7d8,
+    interpolation: #0494bf,
+    keyword: #3b53a2,
+    symbol: #3b53a2,
+    entity: #5d6e81,
+    meta: rgba(93, 110, 129, 0.9),
+    source: $color,
+  ),
+  $masks
+);

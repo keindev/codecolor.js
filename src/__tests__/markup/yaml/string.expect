@@ -1,0 +1,7 @@
+<pre><code class="cc-container"><span class="cc-variable">key</span>: value
+<span class="cc-variable">key</span>: <span class="cc-string">'some value'</span>
+<span class="cc-variable">key</span>: <span class="cc-string">"some value"</span>
+<span class="cc-variable">key</span>: <span class="cc-operator">|</span>
+    multi-string
+    value
+<span class="cc-variable">key</span>: <span class="cc-constant">true</span></code></pre>

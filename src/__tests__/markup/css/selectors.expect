@@ -1,0 +1,23 @@
+<pre><code class="cc-container"><span class="cc-entity">#id</span> {}
+<span class="cc-constant">.class</span> {}
+<span class="cc-variable">div</span> {}
+
+<span class="cc-entity">#id</span><span class="cc-constant">.class</span> {}
+<span class="cc-entity">#id</span> <span class="cc-constant">.class</span> {}
+<span class="cc-constant">.class</span> <span class="cc-entity">#id</span> {}
+
+<span class="cc-variable">div</span><span class="cc-entity">#id</span> {}
+<span class="cc-variable">div</span><span class="cc-constant">.class</span> {}
+<span class="cc-variable">div</span> <span class="cc-entity">#id</span> {}
+<span class="cc-variable">div</span> <span class="cc-constant">.class</span> {}
+
+<span class="cc-constant">.class</span> <span class="cc-entity">#id</span> {}
+<span class="cc-constant">.class</span> > <span class="cc-entity">#id</span> {}
+<span class="cc-constant">.class</span> > <span class="cc-variable">div</span> {}
+
+<span class="cc-variable">div</span><span class="cc-constant">::after</span>{}
+<span class="cc-variable">div</span><span class="cc-constant">.class</span><span class="cc-constant">::after</span>{}
+
+<span class="cc-entity">#id</span> <span class="cc-entity">#id</span> <span class="cc-entity">#id</span> {}
+<span class="cc-constant">.class</span><span class="cc-constant">.class</span> <span class="cc-constant">.class</span> {}
+<span class="cc-variable">div</span> <span class="cc-variable">div</span> <span class="cc-variable">div</span> {}</code></pre>

@@ -1,0 +1,1 @@
+<pre><code class="cc-container">text.<span class="cc-entity">next</span>().<span class="cc-entity">wait</span>().<span class="cc-entity">continue</span>(<span class="cc-constant">0</span>);</code></pre>

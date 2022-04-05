@@ -1,0 +1,4 @@
+li:not(.red){}
+li:not(.red):not(.green){}
+li::after{}
+#id li.test::after{}

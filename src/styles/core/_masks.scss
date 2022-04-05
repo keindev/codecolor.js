@@ -1,9 +1,17 @@
-@mixin mask($name, $colors) {
-    @each $color in $colors {
-        $i: index($colors, $color) - 1;
+@each $name, $value in $masks {
+  .#{$prefix}-#{$name} {
+    color: var(--#{$prefix}-#{$name}-color, $value);
+  }
+}
 
-        .#{$prefix}#{$name}-mask-#{$i} {
-            color: $color;
-        }
-    }
+.#{$prefix}-emphasis {
+  font-style: italic;
+}
+
+.#{$prefix}-strong {
+  font-weight: bold;
+}
+
+.#{$prefix}-link {
+  text-decoration: underline;
 }
