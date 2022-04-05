@@ -1,6 +1,6 @@
 {
   "name": "codecolor.js",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "fast, small and simple syntax highlighter library",
   "license": "MIT",
   "homepage": "https://github.com/keindev/codecolor.js#readme",
@@ -19,7 +19,7 @@
   "exports": {
     ".": "./lib/index.js",
     "./languages/*": "./lib/languages/*.js",
-    "./themes/*": "./themes/*.css"
+    "./themes/*": "./lib/themes/*.css"
   },
   "repository": {
     "type": "git",
@@ -29,7 +29,7 @@
     "node": "^14.13.1 || >=16.0.0"
   },
   "scripts": {
-    "bench": "node bench/highlight.bench.js",
+    "benchmark": "node --experimental-specifier-resolution=node --loader ts-node/esm src/__benchmark__/benchmark.ts",
     "build": "npm-run-all build:*",
     "build:scss": "sass src/styles/themes:lib/themes",
     "build:ts": "rimraf lib && tsc --extendedDiagnostics",
@@ -47,7 +47,6 @@
     "prepare:vscode": "node --experimental-specifier-resolution=node node_modules/.bin/vscode-shared-config",
     "release": "npm-run-all prepare lint test build generate",
     "test": "npm-run-all test:*",
-    "test:benchmark": "node --experimental-specifier-resolution=node --loader ts-node/esm src/__benchmark__/benchmark.ts",
     "test:jest": "node --experimental-vm-modules node_modules/.bin/jest"
   },
   "devDependencies": {

@@ -51,7 +51,7 @@ console.log(html);
 ## Benchmark
 
 ```console
-npm run test:benchmark
+npm run benchmark
 
 ---
 

@@ -1,4 +1,4 @@
 {
-  "words": ["codecolor", "prismjs", "microtime", "PCRE", "tilix"],
+  "words": ["codecolor", "prismjs", "microtime", "PCRE", "tilix", "flowtype", "jsonlint"],
   "ignorePaths": ["src/languages"]
 }

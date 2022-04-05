@@ -1,0 +1,21 @@
+{
+  "name": "codecolor.js",
+  "version": "1.0.1",
+  "description": "fast, small and simple syntax highlighter library",
+  "keywords": [
+    "highlight",
+    "syntax",
+    "typescript"
+  ],
+  "repo": "keindev/codecolor.js",
+  "type": "utils",
+  "links": {
+    "homepage": "https://github.com/keindev/codecolor.js#readme",
+    "git": "https://github.com/keindev/codecolor.js",
+    "npm": "https://www.npmjs.com/package/codecolor.js"
+  },
+  "files": {
+    "banner": "media/banner.svg",
+    "logo": "media/logo.svg"
+  }
+}
