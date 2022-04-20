@@ -12,11 +12,11 @@ import prism from 'prismjs';
 import prismLoadLanguage from 'prismjs/components/';
 import { fileURLToPath } from 'url';
 
-import CodeColor from '../CodeColor.js';
-import css from '../languages/css.js';
-import javascript from '../languages/javascript.js';
-import json from '../languages/json.js';
-import { ILanguageName, ISyntax } from '../types.js';
+import CodeColor from '../../CodeColor.js';
+import css from '../../languages/css.js';
+import javascript from '../../languages/javascript.js';
+import json from '../../languages/json.js';
+import { ILanguageName, ISyntax } from '../../types.js';
 
 // eslint-disable-next-line no-underscore-dangle
 const __dirname = dirname(fileURLToPath(import.meta.url));
