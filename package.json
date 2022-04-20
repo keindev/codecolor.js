@@ -29,7 +29,7 @@
     "node": "^14.13.1 || >=16.0.0"
   },
   "scripts": {
-    "benchmark": "node --experimental-specifier-resolution=node --loader ts-node/esm src/__tests__/__benchmark__/benchmark.ts",
+    "benchmark": "node --experimental-specifier-resolution=node --loader ts-node/esm src/__benchmark__/benchmark.ts",
     "build": "npm-run-all build:*",
     "build:scss": "sass src/styles/themes:lib/themes",
     "build:ts": "rimraf lib && tsc --extendedDiagnostics",
