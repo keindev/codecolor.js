@@ -1,4 +1,4 @@
-import { IToken } from './types';
+import { IToken } from './types.js';
 
 const isCross = (a: IToken, b: IToken): boolean => a.start >= b.start && a.start <= b.end && a.end >= b.end;
 const isIncludedIn = (a: IToken, b: IToken): boolean => a.start >= b.start && a.end <= b.end;

@@ -1,4 +1,4 @@
-import { ISyntax } from '../types';
+import { ISyntax } from '../types.js';
 
 const json: ISyntax = {
   name: 'json',

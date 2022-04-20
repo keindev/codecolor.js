@@ -1,5 +1,5 @@
-import { ILanguage, ILanguageName, IPattern, IRenderOptions, ISyntax, IToken } from './types';
-import { compare, half } from './utils';
+import { ILanguage, ILanguageName, IPattern, IRenderOptions, ISyntax, IToken } from './types.js';
+import { compare, half } from './utils.js';
 
 class CodeColor {
   readonly languages: Map<string, ILanguage> = new Map();
