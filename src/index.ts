@@ -1,1 +1,1 @@
-export { default } from './CodeColor';
+export { default } from './CodeColor.js';

@@ -2,13 +2,13 @@ import fs from 'fs';
 import path, { dirname } from 'path';
 import { fileURLToPath } from 'url';
 
-import CodeColor from '../CodeColor';
-import bash from '../languages/bash';
-import css from '../languages/css';
-import javascript from '../languages/javascript';
-import json from '../languages/json';
-import scss from '../languages/scss';
-import yaml from '../languages/yaml';
+import CodeColor from '../CodeColor.js';
+import bash from '../languages/bash.js';
+import css from '../languages/css.js';
+import javascript from '../languages/javascript.js';
+import json from '../languages/json.js';
+import scss from '../languages/scss.js';
+import yaml from '../languages/yaml.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const MARKUP_DIR = './markup';

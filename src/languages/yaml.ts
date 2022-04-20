@@ -1,4 +1,4 @@
-import { ISyntax } from '../types';
+import { ISyntax } from '../types.js';
 
 const yaml: ISyntax = {
   name: 'yaml',
