@@ -9,14 +9,14 @@ import hljsJavaScript from 'highlight.js/lib/languages/javascript';
 import hljsJSON from 'highlight.js/lib/languages/json';
 import path, { dirname } from 'path';
 import prism from 'prismjs';
-import prismLoadLanguage from 'prismjs/components/';
+import prismLoadLanguage from 'prismjs/components/index.js';
 import { fileURLToPath } from 'url';
 
-import CodeColor from '../CodeColor.js';
-import css from '../languages/css.js';
-import javascript from '../languages/javascript.js';
-import json from '../languages/json.js';
-import { ILanguageName, ISyntax } from '../types.js';
+import CodeColor from '../../CodeColor.js';
+import css from '../../languages/css.js';
+import javascript from '../../languages/javascript.js';
+import json from '../../languages/json.js';
+import { ILanguageName, ISyntax } from '../../types.js';
 
 // eslint-disable-next-line no-underscore-dangle
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -26,9 +26,9 @@ console.log(colors.underline('Test perf:'));
 
 (
   [
-    ['css', '../../node_modules/prismjs/themes/prism-coy.css', [hljsCSS, css]],
-    ['javascript', '../../node_modules/highlight.js/lib/common.js', [hljsJavaScript, javascript]],
-    ['json', '../../package.json', [hljsJSON, json]],
+    ['css', '../../../node_modules/prismjs/themes/prism-coy.css', [hljsCSS, css]],
+    ['javascript', '../../../node_modules/highlight.js/lib/common.js', [hljsJavaScript, javascript]],
+    ['json', '../../../package.json', [hljsJSON, json]],
   ] as [ILanguageName, string, [LanguageFn, ISyntax]][]
 ).forEach(([language, filePath, [hljsFn, schema]]) => {
   const text = String(fs.readFileSync(path.resolve(__dirname, filePath)));
