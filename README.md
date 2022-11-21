@@ -1,4 +1,4 @@
-<p align="center"><img src="https://cdn.jsdelivr.net/gh/keindev/codecolor.js/media/banner.svg" alt="Package logo"></p>
+<p align="center"><img src="https://cdn.jsdelivr.net/gh/tagproject/art/packages/codecolor.js/banner.svg" alt="Package logo"></p>
 
 <p align="center">
     <a href="https://travis-ci.com/keindev/codecolor.js"><img src="https://travis-ci.com/keindev/codecolor.js.svg?branch=master" alt="Build Status"></a>
