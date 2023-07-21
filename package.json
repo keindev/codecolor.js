@@ -54,7 +54,7 @@
     "@tagproject/vscode-shared-config": "^2.0.5",
     "@types/benchmark": "^2.1.2",
     "@types/jest": "^29.2.4",
-    "@types/node": "^18.11.11",
+    "@types/node": "^20.4.3",
     "@types/prismjs": "^1.26.0",
     "@typescript-eslint/eslint-plugin": "^5.45.1",
     "@typescript-eslint/parser": "^5.45.1",
