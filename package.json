@@ -49,7 +49,7 @@
     "test:jest": "node --experimental-vm-modules node_modules/.bin/jest"
   },
   "devDependencies": {
-    "@tagproject/docs-shared-config": "^1.1.2",
+    "@tagproject/docs-shared-config": "^3.0.0",
     "@tagproject/ts-package-shared-config": "^10.0.3",
     "@tagproject/vscode-shared-config": "^2.0.5",
     "@types/benchmark": "^2.1.2",
