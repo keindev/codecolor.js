@@ -1,26 +1,42 @@
 # Important Changes
 
+## Engines
+
+- Changed **node** from `^14.13.1 || >=16.0.0` to `>=16.0.0`
+
 ## Dependencies
 
 <details>
 <summary>Dev Dependencies</summary>
 
-- Changed **[@tagproject/ts-package-shared-config](https://www.npmjs.com/package/@tagproject/ts-package-shared-config)** from `^10.0.2` to `^10.0.3`
-- Changed **[@types/jest](https://www.npmjs.com/package/@types/jest)** from `^29.2.3` to `^29.2.4`
-- Changed **[@types/node](https://www.npmjs.com/package/@types/node)** from `^18.11.9` to `^18.11.11`
-- Changed **[@typescript-eslint/eslint-plugin](https://www.npmjs.com/package/@typescript-eslint/eslint-plugin)** from `^5.44.0` to `^5.45.1`
-- Changed **[@typescript-eslint/parser](https://www.npmjs.com/package/@typescript-eslint/parser)** from `^5.44.0` to `^5.45.1`
-- Changed **[cspell](https://www.npmjs.com/package/cspell)** from `^6.14.3` to `^6.17.0`
-- Changed **[eslint](https://www.npmjs.com/package/eslint)** from `^8.28.0` to `^8.29.0`
-- Changed **[eslint-plugin-jest](https://www.npmjs.com/package/eslint-plugin-jest)** from `^27.1.5` to `^27.1.6`
-- Changed **[highlight.js](https://www.npmjs.com/package/highlight.js)** from `^11.6.0` to `^11.7.0`
-- Changed **[prettier](https://www.npmjs.com/package/prettier)** from `^2.7.1` to `^2.8.0`
+- Changed **[highlight.js](https://www.npmjs.com/package/highlight.js)** from `^11.7.0` to `^11.8.0`
+- Changed **[sass](https://www.npmjs.com/package/sass)** from `^1.56.1` to `^1.66.1`
+- Bumped **[@tagproject/ts-package-shared-config](https://www.npmjs.com/package/@tagproject/ts-package-shared-config)** from `^10.0.3` to `^11.0.1`
+- Removed **[@tagproject/docs-shared-config](https://www.npmjs.com/package/@tagproject/docs-shared-config)**, with `^1.1.2`
+- Removed **[@tagproject/vscode-shared-config](https://www.npmjs.com/package/@tagproject/vscode-shared-config)**, with `^2.0.5`
+- Removed **[@types/jest](https://www.npmjs.com/package/@types/jest)**, with `^29.2.4`
+- Removed **[@types/node](https://www.npmjs.com/package/@types/node)**, with `^18.11.11`
+- Removed **[@typescript-eslint/eslint-plugin](https://www.npmjs.com/package/@typescript-eslint/eslint-plugin)**, with `^5.45.1`
+- Removed **[@typescript-eslint/parser](https://www.npmjs.com/package/@typescript-eslint/parser)**, with `^5.45.1`
+- Removed **[changelog-guru](https://www.npmjs.com/package/changelog-guru)**, with `^4.0.9`
+- Removed **[cspell](https://www.npmjs.com/package/cspell)**, with `^6.17.0`
+- Removed **[eslint](https://www.npmjs.com/package/eslint)**, with `^8.29.0`
+- Removed **[eslint-config-prettier](https://www.npmjs.com/package/eslint-config-prettier)**, with `^8.5.0`
+- Removed **[eslint-plugin-import](https://www.npmjs.com/package/eslint-plugin-import)**, with `^2.26.0`
+- Removed **[eslint-plugin-jest](https://www.npmjs.com/package/eslint-plugin-jest)**, with `^27.1.6`
+- Removed **[eslint-plugin-node](https://www.npmjs.com/package/eslint-plugin-node)**, with `^11.1.0`
+- Removed **[eslint-plugin-optimize-regex](https://www.npmjs.com/package/eslint-plugin-optimize-regex)**, with `^1.2.1`
+- Removed **[eslint-plugin-promise](https://www.npmjs.com/package/eslint-plugin-promise)**, with `^6.1.1`
+- Removed **[ghinfo](https://www.npmjs.com/package/ghinfo)**, with `^3.0.8`
+- Removed **[husky](https://www.npmjs.com/package/husky)**, with `^8.0.2`
+- Removed **[jest](https://www.npmjs.com/package/jest)**, with `^29.3.1`
+- Removed **[npm-run-all](https://www.npmjs.com/package/npm-run-all)**, with `^4.1.5`
+- Removed **[prettier](https://www.npmjs.com/package/prettier)**, with `^2.8.0`
+- Removed **[rimraf](https://www.npmjs.com/package/rimraf)**, with `^3.0.2`
+- Removed **[ts-jest](https://www.npmjs.com/package/ts-jest)**, with `^29.0.3`
+- Removed **[typescript](https://www.npmjs.com/package/typescript)**, with `^4.9.3`
 
 </details>
-
-# :bug: Bug Fixes
-
-- Fix - Overly permissive regular expression range for function names [`8e9a5ea`](https://github.com/keindev/codecolor.js/commit/8e9a5ea1f6a2a611c6e0be021c5c6534b9e36c22)
 
 ---
 
